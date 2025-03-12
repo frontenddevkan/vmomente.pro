@@ -1,4 +1,6 @@
 
+
+
 function getChineseDate() {
     const now = new Date();
     const year = now.getFullYear();
@@ -21,7 +23,8 @@ return {
     year: year + " - " + chineseYear,
     month: month + " - " + chineseMonth,
     day: day + " - " + chineseDay,
-    hours: hours + " - " + chineseHours
+    hours: hours + " - " + chineseHours,
+    minutes: minutes
 
 };
 
