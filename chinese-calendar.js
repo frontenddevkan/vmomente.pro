@@ -153,6 +153,7 @@ const currentHour = currentDateHour.getHours(); // Получаем текущи
 
 // 7. Определяем индекс двухчасового промежутка
 let twoHourIndex;
+
 if (currentHour >= 15 && currentHour < 17) {
     twoHourIndex = 0; // 15:00 - 16:59
 } else if (currentHour >= 17 && currentHour < 19) {
