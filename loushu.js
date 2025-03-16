@@ -14,5 +14,5 @@ function updateCalendar() {
     });
 }
 
-setInterval(updateCalendar, 60000); // обновление каждую миннуту 
+setInterval(updateCalendar, 1000); // обновление каждую cttreyle 
 updateCalendar();

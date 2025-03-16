@@ -191,13 +191,22 @@ const currentHourInCycle = hourCycle[totalIndex];
 
 const characterHours = currentHourInCycle;
 
+function getMonthName(month) {
+
+const monthWords = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "аАвгуст", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+
+return monthWords[month - 1];
+
+}
+
+
 
 // Месяцы в JavaScript нумеруются с 0 (0 — январь, 1 — февраль, 2 — март и т.д.)
 
     
 return {
     year: year + " - " + characterYear,
-    month: month + " - " + characterMonth,
+    month: getMonthName(month) + " - " + characterMonth,
     day: day + " - " + characterDay,
     hours: hours + " - " + characterHours,
     minutes:  minutes,

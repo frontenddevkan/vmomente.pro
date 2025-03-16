@@ -7,7 +7,7 @@ function updateProgressBar(currentStep, totalSteps) {
 
 // Пример использования
 const totalSteps = 525; // Общее количество делений
-let currentStep = 9; // Текущее значение (можно менять)
+let currentStep = 10; // Текущее значение (можно менять)
 
 // Обновляем прогресс-бар
 updateProgressBar(currentStep, totalSteps);
