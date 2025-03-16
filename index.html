@@ -1,8 +1,4 @@
 <!-- 
-
-
-// автоматически тображать и обновлять китайский цикличский календарь на осннове местного времени пользователя
-
 // как забить в алгоритм смену 24 сезоннов. и циккл 60 дзя дзы чтобы отображалось нна странице
 
 // лшу .  как располагаются в квадрате и как взаимдейстуют элеметы расклада. 
@@ -68,32 +64,33 @@
         }
     </style>
 
-    <table id="loushu">
+<div id="lastHeaven">
+<h3>Позднее Небо</h3>
+    <table id="loushu1">
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
     
     </table>
 
-    <script> 
-        function updateCalendar() {
-            const now = new Date();
+</div>
 
 
-            // добавить логику для расчета текущего цикла
-            // определение небесн и зв 
 
 
-            //  заполняеем таблицу
-            const cells = document.querySelectorAll('#luoshu td');
-            cells.forEach((cell, index) => {
-                cell.textContent = `Элемент ${index + 1}`; 
-            });
-        }
 
-        setInterval(updateCalendar, 60000); // обновление каждую миннуту 
-        updateCalendar();
-    </script>
+<div id="earlyHeaven">
+<h3>Раннее Небо</h3>
+    <table id="loushu2">
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    
+    </table>
+</div>
+
+
+   <script src="loushu.js"></script>
 
 <p>расклад построен по принципам Шу Ли Ци Мэнь Чай Бу Цзю. </p>
 <footer>
