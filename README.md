@@ -1,2 +1,0 @@
-# vmomente.pro
-new project
