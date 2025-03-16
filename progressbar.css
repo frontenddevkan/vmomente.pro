@@ -1,0 +1,42 @@
+#progress-container {
+    width: 100%; /* Ширина прогресс-бара */
+    height: 20px; /* Высота прогресс-бара */
+    background-color: #f0f0f0; /* Цвет фона */
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden; /* Скрыть содержимое, выходящее за границы */
+    /* position: relative; */
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0; /* Начальная ширина (будет изменяться через JS) */
+    background-color: #0a6341; /* Цвет заполнения */
+    transition: width 0.3s ease; /* Плавное изменение ширины */
+    position: relative;
+}
+/* 
+/* Анимация свечения */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(118, 199, 192, 0.7), 0 0 10px rgba(118, 199, 192, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(118, 199, 192, 1), 0 0 20px rgba(118, 199, 192, 1);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(118, 199, 192, 0.7), 0 0 10px rgba(118, 199, 192, 0.7);
+    }
+}
+
+/* Применяем анимацию к прогресс-бару */
+#progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    animation: glow 2s infinite ease-in-out; /* Анимация длится 2 секунды и повторяется бесконечно */
+}
+ */
