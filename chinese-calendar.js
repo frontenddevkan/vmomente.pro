@@ -332,8 +332,6 @@ function getChineseDate() {
 }
 
 
-
-
 setInterval(updateChineseCalendar, 1000);
 
 // обновлям календарь каждую минуту
@@ -342,3 +340,6 @@ setInterval(updateChineseCalendar, 1000);
 // инициализация при загрузке страницы
 
 document.addEventListener('DOMContentLoaded', updateChineseCalendar);
+
+
+export { daguaDay };
