@@ -192,15 +192,12 @@ const currentHourInCycle = hourCycle[totalIndex];
 const characterHours = currentHourInCycle;
 
 function getMonthName(month) {
-
-const monthWords = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "аАвгуст", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-
-return monthWords[month - 1];
+    
+    const monthWords = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "аАвгуст", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    
+    return monthWords[month - 1];
 
 }
-
-
-
 // Месяцы в JavaScript нумеруются с 0 (0 — январь, 1 — февраль, 2 — март и т.д.)
 
     
@@ -232,6 +229,8 @@ function updateChineseCalendar() {
 
     }
 }
+
+export { characterDay, characterMonth, characterYear, characterHours };
 
 // обновлям календарь каждую минуту
 
