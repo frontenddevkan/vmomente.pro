@@ -214,7 +214,6 @@ function updateChineseCalendar() {
 }
 
 
-
 function getDaguaValue(character) {
     if (
         character === "甲子" || 

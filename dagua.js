@@ -28,26 +28,24 @@ const dayToKeyMappingRelationships = {
 const dayToKeyMappingQuiqly = daguaDay;
 
 const dayToKeyMappingHelp = {
-    9: [1 + 6],
-    4: [1 + 6],
-    3: [2 + 7],
-    8: [7 + 2],
-    1: [3 + 8],
-    6: [3 + 8],     
+    9: [1, 6],
+    4: [1, 6],
+    3: [2, 7],
+    8: [7, 2],
+    1: [3, 8],
+    6: [3, 8],  
     
 };
 
 const dayToKeyMappingJob = {
-    6: [2 + 7],
-    1: [2 + 7],
-    4: [3 + 8],
-    9: [3 + 8],
-    2: [9 + 4],
-    7: [4 + 9],
+    6: [2, 7],
+    1: [2, 7],
+    4: [3, 8],
+    9: [3, 8],
+    2: [9, 4],
+    7: [4, 9],
     
 };
-
-
 
 const daguaToCharacters = {
     1: ["甲子", "壬申", "庚辰", "辛丑", "乙卯", "己未", "戊戌"],
@@ -61,14 +59,44 @@ const daguaToCharacters = {
 };
 
 
+function getCombinedCharacters(day, mapping, daguaToCharacters) {
+    // Получаем ключи из маппинга
+    const keys = mapping[day];
+
+    // Если ключи есть, объединяем массивы
+    if (keys) {
+        return keys.flatMap(key => daguaToCharacters[key] || []);
+    }
+
+    // Если ключей нет, возвращаем пустой массив
+    return [];
+}
+
+const charactersHelp = getCombinedCharacters(daguaDay, dayToKeyMappingHelp, daguaToCharacters);
+const charactersJob = getCombinedCharacters(daguaDay, dayToKeyMappingJob, daguaToCharacters);
+
+const h3ElementHelp = document.getElementById('dagua-help');
+const h3ElementJob = document.getElementById('dagua-job');
+
+if (h3ElementHelp && charactersHelp.length > 0) {
+    h3ElementHelp.textContent = charactersHelp.join(', ');
+} else {
+    console.error('No characters found for dagua-help or element not found');
+}
+
+if (h3ElementJob && charactersJob.length > 0) {
+    h3ElementJob.textContent = charactersJob.join(', ');
+} else {
+    console.error('No characters found for dagua-job or element not found');
+}
 function updatePersonalDagua() {
     // Используем переменную daguaDay для выбора массива иероглифов
     
     const characters1 = daguaToCharacters[dayToKeyMappingFinance[daguaDay]];
     const characters2 = daguaToCharacters[dayToKeyMappingRelationships[daguaDay]];
     const characters3 = daguaToCharacters[dayToKeyMappingQuiqly];
-    const characters4 = daguaToCharacters[dayToKeyMappingHelp[daguaDay]];
-    const characters5 = daguaToCharacters[dayToKeyMappingJob[daguaDay]];
+    // const characters4 = daguaToCharacters[dayToKeyMappingHelp[daguaDay]];
+    // const characters5 = daguaToCharacters[dayToKeyMappingJob[daguaDay]];
 
     if (characters1) {
         const h3Element = document.getElementById('dagua-health');
@@ -85,16 +113,16 @@ function updatePersonalDagua() {
             if (h3Element) {
                 h3Element.textContent = characters3.join(', '); // Вставляем иероглифы в элемент
                 }
-    }  if (characters4) {
-        const h3Element = document.getElementById('dagua-help');
-            if (h3Element) {
-                h3Element.textContent = characters4.join(', '); // Вставляем иероглифы в элемент
-                }
-    }  if (characters5) {
-        const h3Element = document.getElementById('dagua-job');
-            if (h3Element) {
-                h3Element.textContent = characters5.join(', '); // Вставляем иероглифы в элемент
-                }
+    // }  if (characters4) {
+    //     const h3Element = document.getElementById('dagua-help');
+    //         if (h3Element) {
+    //             h3Element.textContent = characters4.join(', '); // Вставляем иероглифы в элемент
+    //             }
+    // }  if (characters5) {
+    //     const h3Element = document.getElementById('dagua-job');
+    //         if (h3Element) {
+    //             h3Element.textContent = characters5.join(', '); // Вставляем иероглифы в элемент
+    //             }
     } else { 
         console.error('No characters found for the day number:', daguaDay);
     }
