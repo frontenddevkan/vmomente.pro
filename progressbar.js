@@ -1,17 +1,35 @@
-// Функция для обновления прогресс-бара
-function updateProgressBar(currentStep, totalSteps) {
+document.addEventListener("DOMContentLoaded", function() {
     const progressBar = document.getElementById("progress-bar");
-    const progressPercentage = (currentStep / totalSteps) * 100; // Вычисляем процент
-    progressBar.style.width = progressPercentage + "%"; // Обновляем ширину
-}
+    const currentValue = 18; // Текущее значение
+    const maxValue = 525;   // Максимальное значение
+    const duration = 1000;  // Длительность анимации в миллисекундах
 
-// Пример использования
-const totalSteps = 525; // Общее количество делений
-let currentStep = 18; // Текущее значение (можно менять)
+    // Функция для обновления прогресс-бара с анимацией
+    function animateProgressBar(current, max, duration) {
+        const startTime = performance.now();
+        const targetPercentage = (current / max) * 100;
 
-// Обновляем прогресс-бар
-updateProgressBar(currentStep, totalSteps);
+        function update() {
+            const currentTime = performance.now();
+            const elapsedTime = currentTime - startTime;
 
-// Если нужно изменить значение динамически (например, по кнопке):
-// currentStep = 100; // Новое значение
-// updateProgressBar(currentStep, totalSteps);
+            // Рассчитываем текущий процент
+            const currentPercentage = Math.min((elapsedTime / duration) * targetPercentage, targetPercentage);
+
+            // Устанавливаем ширину прогресс-бара
+            progressBar.style.width = currentPercentage + "%";
+            progressBar.textContent = currentPercentage.toFixed(2) + "%";
+
+            // Продолжаем анимацию, пока не достигнем целевого значения
+            if (currentPercentage < targetPercentage) {
+                requestAnimationFrame(update);
+            }
+        }
+
+        // Запускаем анимацию
+        update();
+    }
+
+    // Запускаем анимацию прогресс-бара
+    animateProgressBar(currentValue, maxValue, duration);
+});
