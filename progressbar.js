@@ -1,17 +1,20 @@
-// Функция для обновления прогресс-бара
-function updateProgressBar(currentStep, totalSteps) {
+document.addEventListener("DOMContentLoaded", function() {
     const progressBar = document.getElementById("progress-bar");
-    const progressPercentage = (currentStep / totalSteps) * 100; // Вычисляем процент
-    progressBar.style.width = progressPercentage + "%"; // Обновляем ширину
-}
+    const currentValue = 18; // Текущее значение
+    const maxValue = 525;   // Максимальное значение
 
-// Пример использования
-const totalSteps = 525; // Общее количество делений
-let currentStep = 18; // Текущее значение (можно менять)
+    // Функция для обновления прогресс-бара
+    function updateProgressBar(current, max) {
+        // Рассчитываем процент заполнения
+        const percentage = (current / max) * 100;
 
-// Обновляем прогресс-бар
-updateProgressBar(currentStep, totalSteps);
+        // Устанавливаем ширину прогресс-бара
+        progressBar.style.width = percentage + "%";
 
-// Если нужно изменить значение динамически (например, по кнопке):
-// currentStep = 100; // Новое значение
-// updateProgressBar(currentStep, totalSteps);
+        // Добавляем текст с процентами (опционально)
+        progressBar.textContent = percentage.toFixed(2) + "%";
+    }
+
+    // Обновляем прогресс-бар
+    updateProgressBar(currentValue, maxValue);
+});
