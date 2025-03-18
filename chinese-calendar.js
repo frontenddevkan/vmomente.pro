@@ -2,18 +2,7 @@
 
 
 
-function getChineseDate() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const day = now.getDate();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
 
-
-    // потом надо будет сюда расчеты добавить символы китайские
-    
     // const chineseDay = "день"; 
     // const chineseMonth = "мес"; 
     // const chineseHours ="час"; 
@@ -192,20 +181,20 @@ const currentHourInCycle = hourCycle[totalIndex];
 const characterHours = currentHourInCycle;
 
 
-// Месяцы в JavaScript нумеруются с 0 (0 — январь, 1 — февраль, 2 — март и т.д.)
 
+
+function getMonthName(month) {
     
-return {
-    year: year + " - " + characterYear,
-    month: month + " - " + characterMonth,
-    day: day + " - " + characterDay,
-    hours: hours + " - " + characterHours,
-    minutes:  minutes,
-    seconds: seconds
-
-};
+    const monthWords = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "аАвгуст", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    
+    return monthWords[month - 1];
 
 }
+// Месяцы в JavaScript нумеруются с 0 (0 — январь, 1 — февраль, 2 — март и т.д.)
+
+
+
+
 
 function updateChineseCalendar() {
     const chineseDate = getChineseDate();
@@ -219,18 +208,138 @@ function updateChineseCalendar() {
         <p>Час: ${chineseDate.hours}</p>
         <p>Минут: ${chineseDate.minutes}</p>
         <p>Секунд: ${chineseDate.seconds}</p>
-      `;
-
+        `;
+        
     }
 }
 
-// обновлям календарь каждую минуту
+
+function getDaguaValue(character) {
+    if (
+        character === "甲子" || 
+        character === "壬申" || 
+        character === "庚辰" || 
+        character === "辛丑" || 
+        character === "乙卯" || 
+        character === "己未" || 
+        character === "戊戌"
+        ) {
+        return 1; 
+    } else if (
+        character === "乙丑" ||
+        character === "乙亥" ||
+        character === "辛巳" ||
+        character === "甲申" ||
+        character === "庚寅" || 
+        character === "甲辰" ||
+        character === "己酉" || 
+        character === "戊午"
+    ) {
+        return 3;
+    } else if (
+        character === "丙寅" ||
+        character === "癸酉" || 
+        character === "壬午" || 
+        character === "辛卯" ||
+        character === "己亥" || 
+        character === "庚子" || 
+        character === "戊申" || 
+        character === "丁巳"
+    ) {
+        return 2;
+    } else if (
+        character === "丁卯" ||
+        character === "丙子" || 
+        character === "丙戌" || 
+        character === "壬辰" || 
+        character === "丁未" || 
+        character === "癸丑" || 
+        character === "癸亥"
+    ) {
+        return 6;
+    } else if (
+        character === "戊辰" ||
+        character === "辛未" || 
+        character === "乙酉" || 
+        character === "己丑" || 
+        character === "甲午" || 
+        character === "壬寅" || 
+        character === "庚戌"
+    ) {
+        return 9;
+    } else if (
+        character === "己巳" ||
+        character === "庚午" || 
+        character === "戊寅" || 
+        character === "丁亥" || 
+        character === "丙申" || 
+        character === "癸卯" || 
+        character === "壬子" || 
+        character === "辛酉"
+    ) {
+        return 8;
+    } else if (
+        character === "甲戌" ||
+        character === "己卯" || 
+        character === "戊子" || 
+        character === "乙未" || 
+        character === "乙巳" || 
+        character === "辛亥" || 
+        character === "甲寅" || 
+        character === "庚申"
+    ){
+        return 7;
+    } else if (
+        character === "丁丑" ||
+        character === "癸未" || 
+        character === "癸巳" || 
+        character === "丁酉" || 
+        character === "丙午" || 
+        character === "丙辰" || 
+        character === "壬戌"
+    ) {
+        return 4;
+    } else {
+        return "ошибка";
+    }
+    
+}
+
+let daguaYear = getDaguaValue(characterYear);
+let daguaMonth = getDaguaValue(characterMonth);
+let daguaDay = getDaguaValue(characterDay);
+let daguaHours = getDaguaValue(characterHours); 
+
+
+function getChineseDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    return {
+        year: year + " - - " + characterYear + " - -  " + `ДАГУА ГОДА: - - ${daguaYear}`, 
+        month: getMonthName(month) + " - - " + characterMonth + " - -  " + `ДАГУА МЕСЯЦА: - - ${daguaMonth}`,
+        day: day + " - - " + characterDay + " - -  " + `ДАГУА ДНЯ: - - ${daguaDay}`,
+        hours: hours + " - - " + characterHours + " - -  " + `ДАГУА ЧАСА: - - ${daguaHours}`,
+        minutes: minutes,
+        seconds: seconds
+    
+    }
+}
+
 
 setInterval(updateChineseCalendar, 1000);
+
+// обновлям календарь каждую минуту
+
 
 // инициализация при загрузке страницы
 
 document.addEventListener('DOMContentLoaded', updateChineseCalendar);
 
 
-
+export { daguaDay };
