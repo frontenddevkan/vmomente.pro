@@ -1,5 +1,8 @@
 
 
+
+
+
     // const chineseDay = "день"; 
     // const chineseMonth = "мес"; 
     // const chineseHours ="час"; 
@@ -11,7 +14,7 @@
     // 2. Получаем текущий год
 
     // 1. Создаем массив, который содержит все возможные комбинации годов
-export const yearCycle = [
+const yearCycle = [
     "乙巳", "丙午", "丁未", "戊申", "己酉", "庚戌", "辛亥", "壬子", "癸丑",
     "甲寅", "乙卯", "丙辰", "丁巳", "戊午", "己未", "庚申", "辛酉", "壬戌", "癸亥", "甲子", 
     "乙丑", "丙寅", "丁卯", "戊辰", "己巳", "庚午", "辛未", "壬申", "癸酉",
@@ -44,7 +47,7 @@ export const yearCycle = [
 
 
    
- export  const monthCycle = [
+   const monthCycle = [
     "己卯", "庚辰", "辛巳", "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子",
     "己丑", "庚寅", "辛卯", "壬辰", "癸巳", "甲午", "乙未", "丙申", "丁酉", "戊戌",
     "己亥", "庚子", "辛丑", "壬寅", "癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申",
@@ -72,7 +75,7 @@ const characterMonth = currentMonthInCycle;
 
 
     // 2. Получаем текущий день
-export const dayCycle = [
+const dayCycle = [
     "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯", "壬辰", "癸巳", 
     "甲午", "乙未", "丙申", "丁酉", "戊戌", "己亥", "庚子", "辛丑", "壬寅", "癸卯", 
     "甲辰", "乙巳", "丙午", "丁未", "戊申", "己酉", "庚戌", "辛亥", "壬子", "癸丑", 
@@ -111,8 +114,7 @@ const characterDay = currentDayInCycle;
 
     // 1. Создаем массив, который содержит все возможные комбинации двухчасовых промежутков
 
-
-export const hourCycle = [
+const hourCycle = [
 
     "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰", "辛巳",
     "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯",
@@ -181,7 +183,7 @@ const characterHours = currentHourInCycle;
 
 
 
-export function getMonthName(month) {
+function getMonthName(month) {
     
     const monthWords = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "аАвгуст", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
     
@@ -194,7 +196,7 @@ export function getMonthName(month) {
 
 
 
-export function updateChineseCalendar() {
+function updateChineseCalendar() {
     const chineseDate = getChineseDate();
     const calendarElement = document.getElementById('chinese-calendar');
     
@@ -212,7 +214,7 @@ export function updateChineseCalendar() {
 }
 
 
-export function getDaguaValue(character) {
+function getDaguaValue(character) {
     if (
         character === "甲子" || 
         character === "壬申" || 
@@ -305,11 +307,11 @@ export function getDaguaValue(character) {
 
 let daguaYear = getDaguaValue(characterYear);
 let daguaMonth = getDaguaValue(characterMonth);
-export let daguaDay = getDaguaValue(characterDay);
+let daguaDay = getDaguaValue(characterDay);
 let daguaHours = getDaguaValue(characterHours); 
 
 
-export function getChineseDate() {
+function getChineseDate() {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
@@ -340,4 +342,4 @@ setInterval(updateChineseCalendar, 1000);
 document.addEventListener('DOMContentLoaded', updateChineseCalendar);
 
 
-
+export { daguaDay };

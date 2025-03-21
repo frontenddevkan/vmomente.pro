@@ -1,5 +1,8 @@
 
 
+
+
+
     // const chineseDay = "день"; 
     // const chineseMonth = "мес"; 
     // const chineseHours ="час"; 
@@ -111,8 +114,11 @@ const characterDay = currentDayInCycle;
 
     // 1. Создаем массив, который содержит все возможные комбинации двухчасовых промежутков
 
-
+<<<<<<< HEAD
+exportconst hourCycle = [
+=======
 export const hourCycle = [
+>>>>>>> main
 
     "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰", "辛巳",
     "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯",

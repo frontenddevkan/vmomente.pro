@@ -1,5 +1,8 @@
 
 
+
+
+
     // const chineseDay = "день"; 
     // const chineseMonth = "мес"; 
     // const chineseHours ="час"; 
@@ -110,7 +113,6 @@ const characterDay = currentDayInCycle;
     // 1. Создаем массив, который содержит все возможные комбинации двухчасовых промежутков
 
     // 1. Создаем массив, который содержит все возможные комбинации двухчасовых промежутков
-
 
 export const hourCycle = [
 
