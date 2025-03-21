@@ -114,7 +114,7 @@ const characterDay = currentDayInCycle;
 
     // 1. Создаем массив, который содержит все возможные комбинации двухчасовых промежутков
 
-const hourCycle = [
+exportconst hourCycle = [
 
     "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰", "辛巳",
     "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯",
@@ -196,7 +196,7 @@ function getMonthName(month) {
 
 
 
-function updateChineseCalendar() {
+export function updateChineseCalendar() {
     const chineseDate = getChineseDate();
     const calendarElement = document.getElementById('chinese-calendar');
     
@@ -311,7 +311,7 @@ let daguaDay = getDaguaValue(characterDay);
 let daguaHours = getDaguaValue(characterHours); 
 
 
-function getChineseDate() {
+export function getChineseDate() {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
