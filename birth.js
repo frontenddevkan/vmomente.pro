@@ -1,13 +1,13 @@
 import { yearCycle, monthCycle, dayCycle, hourCycle } from "./chinese-calendar.js";
 
 function calculateChineseBirthday() {
-     // Получаем значения из полей ввода
-     const year = parseInt(document.getElementById('year').value);
-     const month = parseInt(document.getElementById('month').value);
-     const day = parseInt(document.getElementById('day').value);
-     const hour = parseInt(document.getElementById('hour').value);
- 
-     // Проверяем, что все поля заполнены
+    // Получаем значения из полей ввода
+    const year = parseInt(document.getElementById('year').value);
+    const month = parseInt(document.getElementById('month').value);
+    const day = parseInt(document.getElementById('day').value);
+    const hour = parseInt(document.getElementById('hour').value);
+
+    // Проверяем, что все поля заполнены
     if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour)) {
         alert("Пожалуйста, заполните все поля корректно.");
         return;
@@ -46,22 +46,47 @@ function calculateMonth(year, month) {
 // Функция для вычисления иероглифа дня
 function calculateDay(year, month, day) {
     const startDay = new Date(2025, 2, 15, 23, 0, 0); // 15 марта 2025 года, 23:00:00 (начало цикла)
-    const timeDifference = new Date(year, month - 1, day) - startDay;
-    const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Разница в днях
+    const currentDate = new Date(year, month - 1, day);
+
+    // Разница в миллисекундах между текущей датой и начальной датой
+    const timeDifference = currentDate - startDay;
+
+    // Разница в днях
+    const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    // Индекс дня в массиве dayCycle
     const dayCycleLength = dayCycle.length; // Длина цикла (60 дней)
-    const dayIndex = dayDifference % dayCycleLength;
-    return dayCycle[dayIndex >= 0 ? dayIndex : dayIndex + dayCycleLength];
+    const dayIndex = (dayDifference % dayCycleLength + dayCycleLength) % dayCycleLength;
+
+    return dayCycle[dayIndex];
 }
 
-// Функция для вычисления иероглифа часа
+// Функция для вычисления иероглифа часа// Функция для вычисления иероглифа часа (исправленная версия)
 function calculateHours(year, month, day, hour) {
-    const startDate = new Date(2025, 2, 16, 15, 0, 0); // 16 марта 2025 года, 15:00:00 (начало цикла)
-    const timeDifferenceHour = new Date(year, month - 1, day, hour) - startDate;
-    const dayDifferenceHour = Math.floor(timeDifferenceHour / (1000 * 60 * 60 * 24)); // Разница в днях
-    const twoHourIndex = Math.floor(hour / 2); // Индекс двухчасового промежутка
-    const hourCycleLength = hourCycle.length; // Длина цикла (60 двухчасовых промежутков)
-    const totalIndex = (dayDifferenceHour * 12 + twoHourIndex) % hourCycleLength;
-    return hourCycle[totalIndex >= 0 ? totalIndex : totalIndex + hourCycleLength];
+    // Сначала получаем дневной столп
+    const dayPillar = calculateDay(year, month, day);
+    
+    // Определяем земную ветвь часа (двухчасовой промежуток)
+    const hourBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+    const hourBranchIndex = Math.floor((hour + 1) / 2) % 12;
+    const hourBranch = hourBranches[hourBranchIndex];
+    
+    // Определяем небесный ствол часа по правилу 五鼠遁
+    const stems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+    const dayStem = dayPillar[0]; // Первый иероглиф дневного столпа
+    
+    // Правило 五鼠遁 для определения ствола часа
+    const startStems = {
+        "甲": "甲", "乙": "丙", "丙": "戊", "丁": "庚", 
+        "戊": "壬", "己": "甲", "庚": "丙", "辛": "戊", 
+        "壬": "庚", "癸": "壬"
+    };
+    
+    const startIndex = stems.indexOf(startStems[dayStem]);
+    const hourStemIndex = (startIndex + hourBranchIndex) % 10;
+    const hourStem = stems[hourStemIndex];
+    
+    return hourStem + hourBranch;
 }
 
 // Привязываем функцию к кнопке
