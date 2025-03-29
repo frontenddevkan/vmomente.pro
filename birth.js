@@ -24,6 +24,11 @@ function calculateChineseBirthday() {
     document.getElementById('month-characters').innerText = `Месяц: ${characterMonth}`;
     document.getElementById('day-characters').innerText = `День: ${characterDay}`;
     document.getElementById('hour-characters').innerText = `Час: ${characterHours}`;
+    
+    // Проверяем благоприятные дни
+    checkFavorableDays(characterYear);
+
+
 }
 
 // Функция для вычисления иероглифа года
@@ -94,3 +99,50 @@ document.getElementById('birthday-form').addEventListener('submit', function(eve
     event.preventDefault(); // Предотвращаем отправку формы
     calculateChineseBirthday(); // Вызываем функцию расчета
 });
+
+function checkFavorableDays(characterYear) {
+    // Получаем текущие благоприятные дни с главной страницы
+    const daguaHealth = document.getElementById('dagua-health')?.textContent.split(', ') || [];
+    const daguaRelationships = document.getElementById('dagua-relationships')?.textContent.split(', ') || [];
+    const daguaQuickly = document.getElementById('dagua-quickly')?.textContent.split(', ') || [];
+    const daguaHelp = document.getElementById('dagua-help')?.textContent.split(', ') || [];
+    const daguaJob = document.getElementById('dagua-job')?.textContent.split(', ') || [];
+    
+    // Показываем блок с информацией
+    const personalInfo = document.getElementById('personal-dagua-info');
+    personalInfo.style.display = 'block';
+    
+    // Скрываем все подразделы сначала
+    document.getElementById('personal-health').style.display = 'none';
+    document.getElementById('personal-relationships').style.display = 'none';
+    document.getElementById('personal-quickly').style.display = 'none';
+    document.getElementById('personal-help').style.display = 'none';
+    document.getElementById('personal-job').style.display = 'none';
+    
+    // Проверяем совпадения и показываем соответствующие подразделы
+    if (daguaHealth.includes(characterYear)) {
+        document.getElementById('personal-health').style.display = 'block';
+    }
+    if (daguaRelationships.includes(characterYear)) {
+        document.getElementById('personal-relationships').style.display = 'block';
+    }
+    if (daguaQuickly.includes(characterYear)) {
+        document.getElementById('personal-quickly').style.display = 'block';
+    }
+    if (daguaHelp.includes(characterYear)) {
+        document.getElementById('personal-help').style.display = 'block';
+    }
+    if (daguaJob.includes(characterYear)) {
+        document.getElementById('personal-job').style.display = 'block';
+    }
+    
+    // Если нет совпадений, показываем сообщение
+    if (!daguaHealth.includes(characterYear) && 
+        !daguaRelationships.includes(characterYear) && 
+        !daguaQuickly.includes(characterYear) && 
+        !daguaHelp.includes(characterYear) && 
+        !daguaJob.includes(characterYear)) {
+        personalInfo.innerHTML = '<h4>Сегодня нет специальных рекомендаций для вашего года рождения</h4>';
+    }
+}
+

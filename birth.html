@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
     <script src="birth.js"></script>
+    <style link rel="stylesheet" href="main.css"></style>
     <title>Индивидуальный календарь</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -20,8 +22,24 @@
             <p id="year-characters"></p> <!-- Добавлено для отображения иероглифов года -->
 
             <label for="month">Месяц:</label>   
-            <input type="number" id="month" name="month" min="1" max="12">
-            <p id="month-characters"></p> <!-- Добавлено для отображения иероглифов месяца -->
+            <!-- <input type="number" id="month" name="month" min="1" max="12">
+             -->
+             <select id="month" name="month">
+                <option value="1">Январь</option>
+                <option value="2">Февраль</option>
+                <option value="3">Март</option>
+                <option value="4">Апрель</option>
+                <option value="5">Май</option>
+                <option value="6">Июнь</option>
+                <option value="7">Июль</option>
+                <option value="8">Август</option>
+                <option value="9">Сентябрь</option>
+                <option value="10">Октябрь</option>
+                <option value="11">Ноябрь</option>
+                <option value="12">Декабрь</option>
+              </select>
+              <p id="month-characters"></p> 
+              <!-- Добавлено для отображения иероглифов месяца -->
 
             <label for="day">День:</label>
             <input type="number" id="day" name="day" min="1" max="31">
@@ -35,9 +53,30 @@
             <button type="submit">Рассчитать</button>
         </form>
     
-           
+
+                  
       
     </div>
+
+
+    <div id="personal-dagua-info" style="display: none;">
+        <div id="personal-health">
+            <h4>Этот день хорош для решения ФИНАНСОВЫХ ВОПРОСОВ и ЗДОРОВЬЯ для вас</h4>
+        </div>
+        <div id="personal-relationships">
+            <h4>Этот день хорош для ОТНОШЕНИЙ и РОМАНТИКИ для вас</h4>
+        </div>
+        <div id="personal-quickly">
+            <h4>Этот день хорош для БЫСТРОГО решения вопросов для вас</h4>
+        </div>
+        <div id="personal-help">
+            <h4>Сегодня вы получаете ПОМОЩЬ И ПОДДЕРЖКУ НЕБА</h4>
+        </div>
+        <div id="personal-job">
+            <h4>Этот день хорош для решения вопросов по КАРЬЕРЕ для вас</h4>
+        </div>
+    </div>
+    
     <script type="module" src="./birth.js"></script>
     
 </body>
