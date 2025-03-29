@@ -25,6 +25,7 @@
             <!-- <input type="number" id="month" name="month" min="1" max="12">
              -->
              <select id="month" name="month">
+                <option value="">Не выбрано</option>
                 <option value="1">Январь</option>
                 <option value="2">Февраль</option>
                 <option value="3">Март</option>
@@ -38,6 +39,7 @@
                 <option value="11">Ноябрь</option>
                 <option value="12">Декабрь</option>
               </select>
+
               <p id="month-characters"></p> 
               <!-- Добавлено для отображения иероглифов месяца -->
 
@@ -52,8 +54,8 @@
             
             <button type="submit">Рассчитать</button>
         </form>
-    
 
+        
                   
       
     </div>
@@ -76,6 +78,13 @@
             <h4>Этот день хорош для решения вопросов по КАРЬЕРЕ для вас</h4>
         </div>
     </div>
+    
+    
+        <div id="advisor-star" style="margin-top: 30px; display: none;">
+            <h4>Ваша Звезда Советника по дню: <span id="star-symbol"></span></h4>
+        </div>
+
+        
     
     <script type="module" src="./birth.js"></script>
     
