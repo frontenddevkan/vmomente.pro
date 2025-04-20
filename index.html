@@ -57,12 +57,56 @@
 
     <h1>Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
 
-    <div id="chinese-calendar"></div>
+    <!-- <div id="chinese-calendar"></div>
     
-    <!-- пдклчаем наш файл с календарем -->
+    пдклчаем наш файл с календарем
 <div id="dagua-info">
-<div>
-    <a href="./birth.html"><p>Как узнать свой Знак Года Рождения? - ссылка</p></a>
+<div> 
+
+    <!-- НАЧАЛО отдельно по каждому знаку -->
+
+
+    <div class="columns-container">
+        <!-- Время -->
+        <div class="column">
+            <h3>ВРЕМЯ</h3>
+            <div id="current-time"></div>
+            <div class="characters" id="time-characters"></div>
+            <div id="time-dagua"></div>
+        </div>
+
+        <!-- День -->
+        <div class="column">
+            <h3>ДЕНЬ</h3>
+            <div id="current-day"></div>
+            <div class="characters" id="day-characters"></div>
+            <div id="day-dagua"></div>
+        </div>
+
+        <!-- Месяц -->
+        <div class="column">
+            <h3>МЕСЯЦ</h3>
+            <div id="current-month"></div>
+            <div class="characters" id="month-characters"></div>
+            <div id="month-dagua"></div>
+        </div>
+
+        <!-- Год -->
+        <div class="column">
+            <h3>ГОД</h3>
+            <div id="current-year"></div>
+            <div class="characters" id="year-characters"></div>
+            <div id="year-dagua"></div>
+        </div>
+    </div>
+
+    <!-- Остальной контент -->
+
+
+
+    <!-- КОНЕЦ отдельно по каждому знаку -->
+
+
 </div>
     <div id="health">
         <h4>Сегодня отличный день для решения ФИНАНСОВЫХ ВОПРОСОВ,</h4>
@@ -99,18 +143,7 @@
 </div>
 
 
-    <style>
-        table {
-            width: 300px;
-            height: 300px;
-            border-collapse: collapse;
-        }
-        td {
-            border: 1px solid rgba(0, 0, 0, 0.604);
-            text-align: center;
-            vertical-align: middle;
-        }
-    </style>
+
 
 <div id="lastHeaven">
 <h3>Позднее Небо</h3>
@@ -125,8 +158,6 @@
 
 
 
-
-
 <div id="earlyHeaven">
 <h3>Раннее Небо</h3>
     <table id="loushu2">
@@ -137,16 +168,7 @@
     </table>
 </div>
 
-<!-- <div class="stars">
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-     Добавьте больше звезд по необходимости  -->
 
-   <!-- <script src="loushu.js"></script> -->
    <script src="stars.js"></script>
 
 <p style="font-size: 16px;">расклад построен по принципам Шу Ли Ци Мэнь Чай Бу Цзю. </p>
@@ -230,6 +252,9 @@
 
 </footer>
 
+
+<!-- 
+<script type="module" src="decoder.js"></script> -->
 
 
     

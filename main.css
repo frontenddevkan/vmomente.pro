@@ -65,3 +65,203 @@ body {
 }
 
 /* Остальные стили остаются без изменений */
+
+
+/* Стили для блоков календаря */
+.calendar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  
+  .year-value, .month-value, .day-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.3rem 0;
+    color: #ffd700;
+  }
+  
+  .characters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Стили для блока времени */
+  .time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+  
+  .time-numbers {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: #00ff00;
+  }
+  
+  .time-labels {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  .seconds-label {
+    animation: pulse 1s infinite;
+  }
+  
+  /* Анимация для секунд */
+  @keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; text-shadow: 0 0 8px #00ff00; }
+    100% { opacity: 0.3; }
+  }
+
+  /* main.css */
+.columns-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* main.css */
+.columns-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.characters {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 15px 0;
+}
+
+#current-time {
+    font-size: 1.8rem;
+    color: #00ff00;
+    margin: 10px 0;
+}
+
+/* Стили для блоков рекомендаций */
+#health, 
+#relationships, 
+#quickly, 
+#help, 
+#job {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid;
+    transition: transform 0.3s ease;
+}
+
+#health { border-color: #4CAF50; } /* Зеленый для здоровья */
+#relationships { border-color: #E91E63; } /* Розовый для отношений */
+#quickly { border-color: #FFC107; } /* Желтый для быстрых решений */
+#help { border-color: #2196F3; } /* Синий для помощи */
+#job { border-color: #9C27B0; } /* Фиолетовый для карьеры */
+
+#health:hover,
+#relationships:hover,
+#quickly:hover,
+#help:hover,
+#job:hover {
+    transform: translateY(-3px);
+}
+
+/* Заголовки */
+#health h4, 
+#relationships h4, 
+#quickly h4, 
+#help h4, 
+#job h4 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0 0 1rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+#health h4:before,
+#relationships h4:before,
+#quickly h4:before,
+#help h4:before,
+#job h4:before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: inherit;
+}
+
+#health h5,
+#relationships h5,
+#quickly h5,
+#help h5,
+#job h5 {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin: 1rem 0 0.5rem;
+    font-weight: 400;
+}
+
+/* Блоки с иероглифами */
+#dagua-health,
+#dagua-relationships,
+#dagua-quickly,
+#dagua-help,
+#dagua-job {
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    display: inline-block;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Анимация для важных элементов
+@keyframes pulse-glow {
+    0% { text-shadow: 0 0 8px transparent; }
+    50% { text-shadow: 0 0 12px currentColor; }
+    100% { text-shadow: 0 0 8px transparent; }
+}
+
+#health h4 { animation: pulse-glow 3s infinite; }
+#relationships h4 { animation: pulse-glow 3s infinite 0.5s; }
+#quickly h4 { animation: pulse-glow 3s infinite 1s; } */

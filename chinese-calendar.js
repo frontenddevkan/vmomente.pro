@@ -193,23 +193,45 @@ export function getMonthName(month) {
 
 
 
-
 export function updateChineseCalendar() {
-    const chineseDate = getChineseDate();
-    const calendarElement = document.getElementById('chinese-calendar');
-    
-    if (calendarElement) {
-        calendarElement.innerHTML = 
-        `<p>Год: ${chineseDate.year}</p>
-        <p>Месяц: ${chineseDate.month}</p>
-        <p>День: ${chineseDate.day}</p>
-        <p>Час: ${chineseDate.hours}</p>
-        <p>Минут: ${chineseDate.minutes}</p>
-        <p>Секунд: ${chineseDate.seconds}</p>
-        `;
-        
-    }
+    const data = getChineseDate();
+     // Время
+     document.getElementById('current-time').textContent = 
+     `${data.hours.toString().padStart(2, '0')}:${data.minutes.toString().padStart(2, '0')}:${data.seconds.toString().padStart(2, '0')}`;
+ 
+ document.getElementById('time-characters').innerHTML = 
+     `${characterHours.split('').join('<br>')}`;
+ document.getElementById('time-dagua').textContent = `Дагуа: ${daguaHours}`;
+
+ // День
+ document.getElementById('current-day').textContent = data.day;
+ document.getElementById('day-characters').innerHTML = 
+     `${characterDay.split('').join('<br>')}`;
+ document.getElementById('day-dagua').textContent = `Дагуа: ${daguaDay}`;
+
+ // Месяц
+ document.getElementById('current-month').textContent = data.month;
+ document.getElementById('month-characters').innerHTML = 
+     `${characterMonth.split('').join('<br>')}`;
+ document.getElementById('month-dagua').textContent = `Дагуа: ${daguaMonth}`;
+
+ // Год
+ document.getElementById('current-year').textContent = data.year;
+ document.getElementById('year-characters').innerHTML = 
+     `${characterYear.split('').join('<br>')}`;
+ document.getElementById('year-dagua').textContent = `Дагуа: ${daguaYear}`;
 }
+
+// Обновление каждую секунду
+setInterval(() => {
+ // Перерасчет значений
+ characterYear = getCurrentCycleValue(startDates.year, yearCycle, 'year');
+ characterMonth = getCurrentCycleValue(startDates.month, monthCycle, 'month');
+ characterDay = getCurrentCycleValue(startDates.day, dayCycle, 'day');
+ characterHours = getCurrentCycleValue(startDates.hour, hourCycle, 'hour');
+ 
+ updateChineseCalendar();
+}, 1000);
 
 
 export function getDaguaValue(character) {
@@ -319,10 +341,10 @@ export function getChineseDate() {
     const seconds = now.getSeconds();
 
     return {
-        year: year + " - - " + characterYear + " - -  " + `ДАГУА ГОДА: - - ${daguaYear}`, 
-        month: getMonthName(month) + " - - " + characterMonth + " - -  " + `ДАГУА МЕСЯЦА: - - ${daguaMonth}`,
-        day: day + " - - " + characterDay + " - -  " + `ДАГУА ДНЯ: - - ${daguaDay}`,
-        hours: hours + " - - " + characterHours + " - -  " + `ДАГУА ЧАСА: - - ${daguaHours}`,
+        year: year , 
+        month: getMonthName(month),
+        day: day,
+        hours: hours,
         minutes: minutes,
         seconds: seconds
     
