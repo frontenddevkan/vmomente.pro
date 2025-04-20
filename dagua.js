@@ -94,35 +94,32 @@ function updatePersonalDagua() {
     
     const characters1 = daguaToCharacters[dayToKeyMappingFinance[daguaDay]];
     const characters2 = daguaToCharacters[dayToKeyMappingRelationships[daguaDay]];
-    const characters3 = daguaToCharacters[dayToKeyMappingQuiqly];
-    // const characters4 = daguaToCharacters[dayToKeyMappingHelp[daguaDay]];
-    // const characters5 = daguaToCharacters[dayToKeyMappingJob[daguaDay]];
+    const characters3 = daguaToCharacters[daguaDay];
+    
 
     if (characters1) {
         const h3Element = document.getElementById('dagua-health');
             if (h3Element) {
                 h3Element.textContent = characters1.join(', '); // Вставляем иероглифы в элемент
                 }
-    }  if (characters2) {
+            } else {
+                console.error('No characters found for relationships for day:', daguaDay);
+
+    }
+      if (characters2) {
         const h3Element = document.getElementById('dagua-relationships');
             if (h3Element) {
                 h3Element.textContent = characters2.join(', '); // Вставляем иероглифы в элемент
                 }
-    }  if (characters3) {
+            } else {
+                console.error('No characters found for relationships for day:', daguaDay);
+    }  
+    
+    if (characters3) {
         const h3Element = document.getElementById('dagua-quickly');
             if (h3Element) {
                 h3Element.textContent = characters3.join(', '); // Вставляем иероглифы в элемент
                 }
-    // }  if (characters4) {
-    //     const h3Element = document.getElementById('dagua-help');
-    //         if (h3Element) {
-    //             h3Element.textContent = characters4.join(', '); // Вставляем иероглифы в элемент
-    //             }
-    // }  if (characters5) {
-    //     const h3Element = document.getElementById('dagua-job');
-    //         if (h3Element) {
-    //             h3Element.textContent = characters5.join(', '); // Вставляем иероглифы в элемент
-    //             }
     } else { 
         console.error('No characters found for the day number:', daguaDay);
     }
