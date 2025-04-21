@@ -114,7 +114,10 @@ body {
     align-items: center;
     font-size: 1.8rem;
     margin-top: 0.5rem;
-  }
+    
+}
+
+
   
   /* Стили для блока времени */
   .time-block {
@@ -428,3 +431,4 @@ footer {
 .active {
     background: #4CAF50;
 }
+

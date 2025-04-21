@@ -195,9 +195,17 @@ export function getMonthName(month) {
 
 export function updateChineseCalendar() {
     const data = getChineseDate();
+
+
      // Время
-     document.getElementById('current-time').textContent = 
-     `${data.hours.toString().padStart(2, '0')}:${data.minutes.toString().padStart(2, '0')}:${data.seconds.toString().padStart(2, '0')}`;
+     // Стилизация времени
+    const timeElement = document.getElementById('current-time');
+    timeElement.textContent = `${data.hours.toString().padStart(2, '0')}:${data.minutes.toString().padStart(2, '0')}:${data.seconds.toString().padStart(2, '0')}`;
+    timeElement.classList.add('time-style'); // Добавляем CSS-класс
+    // timeElement.style.fontFamily = 'Arial, sans-serif'; // Inline-стиль
+    timeElement.style.color = '#FFffff'; // Inline-стиль
+    timeElement.style.fontSize = '1.1rem';
+
  
  document.getElementById('time-characters').innerHTML = 
      `${characterHours.split('').join('<br>')}`;
