@@ -19,6 +19,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -300,9 +301,73 @@ td {
     border-radius: 8px;
 }
 
-footer {
+/* footer {
     padding: 30px 15px;
     margin-top: 40px;
     background: rgba(0,0,0,0.3);
+} */
+
+
+
+/* Стили для футера */
+footer {
+    padding: 40px 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+.footer-menu {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+.footer-links a::after {
+    content: "✦";
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+.home-link::after {
+    content: "⌂" !important;
+}
+
+.coming-soon {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.footer-content p {
+    columns: 2;
+    column-gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .footer-content p {
+        columns: 1;
+    }
+    
+    .footer-links {
+        gap: 15px;
+        justify-content: center;
+    }
+}
