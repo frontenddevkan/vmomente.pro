@@ -33,15 +33,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Vmomente.pro</title>
     <h2>готовность калькулятора</h2>
-    <link rel="stylesheet" href="main.css?v=1.0.2">
-    <link rel="stylesheet" href="progressbar.css?v=1.0.2">
-    <script type="module" src="dagua.js?v=1.0.2"></script>
-    <script src="./chinese-calendar.js?v=1.0.2"></script>
-    <script src="./progressbar.js?v=1.0.2"></script>
+    <link rel="stylesheet" href="main.css?v=1.0.3">
+    <link rel="stylesheet" href="progressbar.css?v=1.0.3">
+    <script type="module" src="./js/dagua.js?v=1.0.3"></script>
+    <script src="./js/chinese-calendar.js?v=1.0.3"></script>
+    <script src="./js/progressbar.js?v=1.0.3"></script>
+    <script src="./js/birth.js?v=1.0.3"></script>
+    <script src="./js/stars.js?v=1.0.3"></script>
+
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
 
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -55,15 +61,13 @@
 </header>
 <body>
 
-    <h1>Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
+    <h1 style="font-size: 18px;">Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
 
-    <!-- <div id="chinese-calendar"></div>
-    
-    пдклчаем наш файл с календарем
+
 <div id="dagua-info">
 <div> 
 
-    <!-- НАЧАЛО отдельно по каждому знаку -->
+    
 
 
     <div class="columns-container">
@@ -141,10 +145,6 @@
     
 
 </div>
-
-
-
-
 <div id="lastHeaven">
 <h3>Позднее Небо</h3>
     <table id="loushu1">
@@ -159,20 +159,77 @@
 
 
 <div id="earlyHeaven">
-<h3>Раннее Небо</h3>
+    <h3>Раннее Небо</h3>
     <table id="loushu2">
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
-    
+        
     </table>
 </div>
 
-
-   <script src="stars.js"></script>
-
 <p style="font-size: 16px;">расклад построен по принципам Шу Ли Ци Мэнь Чай Бу Цзю. </p>
-<script src="clear.js?v=1.0.1"></script>
+
+<div>
+    <h2>Индивидуальные тенденции</h2>
+
+ <p>Для того, чтобы узнать в виде каких иероглифов изображается ваш год рождения, выберите соответствующие параметры вашей даты рождения</p>   
+    <div id="birth-date">
+        <h3>Введите свою дату рождения</h3>
+        <form id="birthday-form">
+            <label for="year">Год:</label>
+            <input type="number" id="year" name="year">
+            <p id="year-characters"></p> <!-- Добавлено для отображения иероглифов года -->
+
+            <label for="month">Месяц:</label>   
+            <!-- <input type="number" id="month" name="month" min="1" max="12">
+             -->
+             <select id="month" name="month">
+                <option value="">Не выбрано</option> 
+                <option value="1">Январь</option>
+                <option value="2">Февраль</option>
+                <option value="3">Март</option>
+                <option value="4">Апрель</option>
+                <option value="5">Май</option>
+                <option value="6">Июнь</option>
+                <option value="7">Июль</option>
+                <option value="8">Август</option>
+                <option value="9">Сентябрь</option>
+                <option value="10">Октябрь</option>
+                <option value="11">Ноябрь</option>
+                <option value="12">Декабрь</option>
+              </select>  
+
+              <p id="month-characters"></p> 
+              <!-- Добавлено для отображения иероглифов месяца -->
+
+            <label for="day">День:</label>  
+            <input type="number" id="day" name="day" min="1" max="31">
+            <p id="day-characters"></p> <!-- Добавлено для отображения иероглифов дня -->
+
+            <label for="hour">Час (0-23):</label>
+            <input type="number" id="hour" name="hour" min="0" max="23">
+            <p id="hour-characters"></p> <!-- Добавлено для отображения иероглифов часа -->
+
+            
+            <button type="submit">Рассчитать</button>
+        </form>    
+        <div id="advisor-star" style="margin-top: 30px; display: none;">
+            <h4>Ваша Звезда Советника по дню: <span id="star-symbol"></span></h4>
+        </div>
+
+
+        
+                  
+      
+    </div>    
+</div>    
+
+
+
+
+ 
+<script src="clear.js?v=1.0.3"></script>
 
 <footer>
     <a href="./qimen.html">ци мэнь дун цзя</a>
@@ -251,12 +308,6 @@
  добавить взможность пользвателям оставлять тзывы в самм низу ээкраа и задавать вопросы. но вопросы платно.  -->
 
 </footer>
-
-
-<!-- 
-<script type="module" src="decoder.js"></script> -->
-
-
     
 </body>
 </html>
