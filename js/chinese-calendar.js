@@ -339,6 +339,7 @@ export let daguaDay = getDaguaValue(characterDay);
 let daguaHours = getDaguaValue(characterHours); 
 
 
+
 export function getChineseDate() {
     const now = new Date();
     const year = now.getFullYear();

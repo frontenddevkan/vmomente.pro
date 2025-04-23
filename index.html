@@ -38,11 +38,15 @@
     <h2>готовность калькулятора</h2>
     <link rel="stylesheet" href="main.css?v=1.0.3">
     <link rel="stylesheet" href="progressbar.css?v=1.0.3">
+    <link rel="stylesheet" href="season-progress.css?v=1.0.3">
+
     <script type="module" src="./js/dagua.js?v=1.0.3"></script>
     <script src="./js/chinese-calendar.js?v=1.0.3"></script>
     <script src="./js/progressbar.js?v=1.0.3"></script>
     <script src="./js/birth.js?v=1.0.3"></script>
     <script src="./js/stars.js?v=1.0.3"></script>
+
+<!-- В секции head после других скриптов -->
 
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -52,13 +56,25 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+
+
+<script type="module">
+    import { initSeasonProgress } from './season-progress.js';
+    initSeasonProgress();
+</script>
+
+
 </head>
 <header>
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
 
+    
+    
 </header>
+
+
 <body>
 
     <h1 style="font-size: 18px;">Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
@@ -68,8 +84,6 @@
 <div> 
 
     
-
-
     <div class="columns-container">
         <!-- Время -->
         <div class="column">
@@ -144,9 +158,45 @@
     </div>
     
 
-</div>
+ <!-- season-progress.html -->
+
+ <table class="element-table">
+    <tr>
+        <th class="green-bg" colspan="3">Дерево 木</th>
+        <th class="red-bg" colspan="3">Огонь 火</th>
+        <th class="gray-bg" colspan="3">Металл 金</th>
+        <th class="blue-bg" colspan="3">Вода 水</th>
+    </tr>
+    <tr>
+        <!-- Дерево -->
+        <td class="green-bg">Инь<br>寅<br>Тигр</td>
+        <td class="green-bg">Мао<br>卯<br>Кролик</td>
+        <td class="brown-bg">Чэн<br>辰<br>Дракон</td>
+        
+        <!-- Огонь -->
+        <td class="red-bg">Сы<br>巳<br>Змея</td>
+        <td class="red-bg">У<br>午<br>Лошадь</td>
+        <td class="brown-bg">Вэй<br>未<br>Коза</td>
+        
+        <!-- Металл -->
+        <td class="gray-bg">Шэн<br>申<br>Обезьяна</td>
+        <td class="gray-bg">Ю(йоу)<br>酉<br>Петух</td>
+        <td class="brown-bg">Сюй<br>戌<br>Собака</td>
+        
+        <!-- Вода -->
+        <td class="blue-bg">Хай<br>亥<br>Свинья</td>
+        <td class="blue-bg">Цзы<br>子<br>Крыса</td>
+        <td class="brown-bg">Чоу<br>丑<br>Бык</td>
+    </tr>
+
+</table>
+
+<!-- ---------------------------------------------------- -->
+
+
+
 <div id="lastHeaven">
-<h3>Позднее Небо</h3>
+    <h3>Позднее Небо</h3>
     <table id="loushu1">
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
@@ -169,6 +219,11 @@
 </div>
 
 <p style="font-size: 16px;">расклад построен по принципам Шу Ли Ци Мэнь Чай Бу Цзю. </p>
+
+
+
+
+<!-------------------------------------- -->
 
 <div>
     <h2>Индивидуальные тенденции</h2>
