@@ -228,15 +228,17 @@ export function updateChineseCalendar() {
  document.getElementById('year-characters').innerHTML = 
      `${characterYear.split('').join('<br>')}`;
  document.getElementById('year-dagua').textContent = `Дагуа: ${daguaYear}`;
+
+
 }
 
 // Обновление каждую секунду
 setInterval(() => {
  // Перерасчет значений
- characterYear = getCurrentCycleValue(startDates.year, yearCycle, 'year');
- characterMonth = getCurrentCycleValue(startDates.month, monthCycle, 'month');
- characterDay = getCurrentCycleValue(startDates.day, dayCycle, 'day');
- characterHours = getCurrentCycleValue(startDates.hour, hourCycle, 'hour');
+ characterYear = getCurrentCycleValue(startDate.year, yearCycle, 'year');
+ characterMonth = getCurrentCycleValue(startDate.month, monthCycle, 'month');
+ characterDay = getCurrentCycleValue(startDate.day, dayCycle, 'day');
+ characterHours = getCurrentCycleValue(startDate.hour, hourCycle, 'hour');
  
  updateChineseCalendar();
 }, 1000);
@@ -339,7 +341,6 @@ export let daguaDay = getDaguaValue(characterDay);
 let daguaHours = getDaguaValue(characterHours); 
 
 
-
 export function getChineseDate() {
     const now = new Date();
     const year = now.getFullYear();
@@ -372,3 +373,46 @@ document.addEventListener('DOMContentLoaded', updateChineseCalendar);
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    function checkDayAndUpdateWarning() {
+        const dayCharsElement = document.getElementById('day-characters');
+        const lrYearElement = document.getElementById('lr-year');
+        const warningDiv = document.getElementById('lr-warning');
+
+        if (!dayCharsElement || !lrYearElement || !warningDiv) return;
+
+        const dayText = dayCharsElement.textContent;
+        
+        // Соответствия иероглифов и животных
+        const zodiacMap = {
+            '巳': 'Свинья 亥',
+            '午': 'Крыса 子',
+            '未': 'Бык 丑',
+            '申': 'Тигр 寅',
+            '酉': 'Кролик 卯',
+            '戌': 'Дракон 辰',
+            '亥': 'Змея 巳',
+            '子': 'Лошадь 午',
+            '丑': 'Коза 未',
+            '寅': 'Обезьяна 申',
+            '卯': 'Петух 酉',
+            '辰': 'Собака 戌'
+        };
+
+        // Проверяем каждый иероглиф
+        for (const [char, animal] of Object.entries(zodiacMap)) {
+            if (dayText.includes(char)) {
+                lrYearElement.textContent = animal;
+                warningDiv.style.display = 'block';
+                return;
+            }
+        }
+
+        // Если ничего не найдено
+        warningDiv.style.display = 'none';
+    }
+
+    // Первоначальная проверка и обновление каждую минуту
+    checkDayAndUpdateWarning();
+    setInterval(checkDayAndUpdateWarning, 60000);
+});

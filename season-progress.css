@@ -1,79 +1,54 @@
+/* Базовые стили таблицы */
 .element-table {
     margin: 20px auto;
     border-collapse: separate;
+    border-spacing: 3px;
     width: 95%;
-    font-family: 'Noto Sans SC', sans-serif;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-spacing: 2px;
 }
 
-/* Заголовки элементов (Дерево, Огонь и т.д.) */
-.element-table th[class*="-bg"] { /* Стиль для всех th с классами цветов */
-    padding: 18px;
-    font-weight: 500;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Цвета заголовков и соответствующих ячеек */
-.green-bg { 
-    background: rgba(76, 175, 80, 0.25); 
-    color: #dcedc8;
-    border-color: rgba(76, 175, 80, 0.4);
-}
-.red-bg { 
-    background: rgba(233, 30, 99, 0.25); 
-    color: #ffcdd2;
-    border-color: rgba(233, 30, 99, 0.4);
-}
-.brown-bg { 
-    background: rgba(141, 110, 99, 0.3);
-    color: #d7ccc8;
-    border-color: rgba(141, 110, 99, 0.5);
-}
-.gray-bg { 
-    background: rgba(149, 165, 166, 0.25); 
-    color: #f5f5f5;
-    border-color: rgba(149, 165, 166, 0.4);
-}
-.blue-bg { 
-    background: rgba(52, 152, 219, 0.25); 
-    color: #bbdefb;
-    border-color: rgba(52, 152, 219, 0.4);
-}
-
-/* Ячейки (Инь, Мао и т.д.) */
+.element-table th,
 .element-table td {
     padding: 15px;
-    border: 1px solid rgba(255,255,255,0.15);
-    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
 }
 
-/* Эффект наведения отключен (оставлен для JS) */
-/*
-.element-table tr:hover td {
-    background: rgba(255,255,255,0.05);
-}
-*/
+/* Цветовые классы для элементов */
+.green-bg { background: rgba(46, 204, 113, 0.3); }
+.red-bg    { background: rgba(231, 76, 60, 0.3); }
+.gray-bg  { background: rgba(149, 165, 166, 0.3); }
+.blue-bg  { background: rgba(52, 152, 219, 0.3); }
+.brown-bg { background: rgba(101, 67, 33, 0.3); }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .element-table {
-        width: 100%;
-        font-size: 0.9rem;
-        border-spacing: 1px;
-    }
-    .element-table th {
-        padding: 12px;
-        font-size: 1rem;
-    }
-    .element-table td {
-        padding: 10px;
-    }
+/* Стили для активных ячеек */
+.element-table .active {
+    position: relative;
+    background: var(--season-color, rgba(76, 175, 80, 0.5)) !important;
+    box-shadow: 
+        0 0 15px rgba(76, 175, 80, 0.3),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+/* Анимация подсветки */
+@keyframes pulse-active {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.element-table .active {
+    animation: pulse-active 2s infinite;
+}
+
+/* Усиление контраста текста */
+.element-table .active td,
+.element-table .active th {
+    color: #fff !important;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

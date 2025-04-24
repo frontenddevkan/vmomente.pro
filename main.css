@@ -522,3 +522,23 @@ footer {
     color: #fff;
 }
 
+/* лр  */
+
+/* Стили для блока предупреждения */
+/* Стили для предупреждения */
+.lr-notice {
+    
+    background: rgba(219, 34, 56, 0.15); 
+    border-left: 4px solid #a11f1f;       
+    padding: 12px 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 6px;
+    color: #cdcccb;                       
+    font-size: 1.5rem;
+}
+
+.lr-notice.visible {
+    display: block;
+}
+

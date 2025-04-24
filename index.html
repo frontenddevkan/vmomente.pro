@@ -35,7 +35,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Vmomente.pro</title>
-    <h2>готовность калькулятора</h2>
     <link rel="stylesheet" href="main.css?v=1.0.3">
     <link rel="stylesheet" href="progressbar.css?v=1.0.3">
     <link rel="stylesheet" href="season-progress.css?v=1.0.3">
@@ -45,8 +44,13 @@
     <script src="./js/progressbar.js?v=1.0.3"></script>
     <script src="./js/birth.js?v=1.0.3"></script>
     <script src="./js/stars.js?v=1.0.3"></script>
+    <script src="./js/lr-warning.js?v=1.0.3"></script>
+    <!-- После chinese-calendar.js -->
+<script type="module" src="./js/chinese-calendar.js"></script>
+<script type="module" src="./js/lr-warning.js"></script>
+   
+<script type="module" src="./js/season-progress.js?v=1.0.5"></script>
 
-<!-- В секции head после других скриптов -->
 
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -54,30 +58,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
 
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-
-
-<script type="module">
-    import { initSeasonProgress } from './season-progress.js';
-    initSeasonProgress();
-</script>
-
 
 </head>
 <header>
+    <h2>готовность калькулятора</h2>
+
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
 
-    
+
     
 </header>
 
 
 <body>
 
-    <h1 style="font-size: 18px;">Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
+    <h1>Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
 
 
 <div id="dagua-info">
@@ -121,7 +118,14 @@
     <!-- Остальной контент -->
 
 
+<!-- Блок предупреждения ЛР-->
 
+<div id="lr-warning" class="lr-notice">
+    <p>⚠️ Сегодня день Личного Разрушителя для людей с годом рождения <span id="lr-year"></span></p>
+</div>
+
+
+<!-- конеы предупреждения -->
     <!-- КОНЕЦ отдельно по каждому знаку -->
 
 
@@ -162,10 +166,10 @@
 
  <table class="element-table">
     <tr>
-        <th class="green-bg" colspan="3">Дерево 木</th>
-        <th class="red-bg" colspan="3">Огонь 火</th>
-        <th class="gray-bg" colspan="3">Металл 金</th>
-        <th class="blue-bg" colspan="3">Вода 水</th>
+        <th class="green-bg" colspan="3" id="tree">Дерево 木</th>
+        <th class="red-bg" colspan="3" id="fire">Огонь 火</th>
+        <th class="gray-bg" colspan="3" id="metal">Металл 金</th>
+        <th class="blue-bg" colspan="3" id="water">Вода 水</th>
     </tr>
     <tr>
         <!-- Дерево -->
@@ -219,16 +223,16 @@
 
 <tr>
         <th class="brown-bg" colspan="3">Чистота и ясность</th>
-        <th class="red-bg" colspan="3">Малая жара</th>
-    <th class="gray-bg" colspan="3">Холодные росы</th>
+        <th class="brown-bg" colspan="3">Малая жара</th>
+    <th class="brown-bg" colspan="3">Холодные росы</th>
     <th class="blue-bg" colspan="3">Малые холода</th>
 
 </tr>
 
 <tr>
         <th class="brown-bg" colspan="3">Хлебные дожди</th>
-        <th class="red-bg" colspan="3">Большая жара</th>
-        <th class="gray-bg" colspan="3">Выпадение инея</th>
+        <th class="brown-bg" colspan="3">Большая жара</th>
+        <th class="brown-bg" colspan="3">Выпадение инея</th>
         <th class="blue-bg" colspan="3">Большие холода</th>
     
 </tr>
