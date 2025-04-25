@@ -416,3 +416,45 @@ document.addEventListener('DOMContentLoaded', function() {
     checkDayAndUpdateWarning();
     setInterval(checkDayAndUpdateWarning, 60000);
 });
+
+
+
+
+// -------------------------------------
+
+function updateActiveElement() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1; // 1-12
+    const dateValue = month * 100 + day;
+
+    // Проверка для 26 апреля (426)
+    console.log('Текущая дата:', dateValue);
+
+    let activeId = 'water';
+    
+    if (dateValue >= 204 && dateValue <= 504) { // 4.02-4.05
+        activeId = 'tree';
+    } else if (dateValue >= 505 && dateValue <= 608) { // 5.05-6.08
+        activeId = 'fire';
+    } else if (dateValue >= 807 && dateValue <= 1107) { // 7.08-7.11
+        activeId = 'metal';
+    }
+
+    // Применяем стили
+    document.querySelectorAll('.element-table td').forEach(td => {
+        td.classList.remove('neon', 'disable-bg');
+        td.style.transform = 'scale(1)'; // Сброс анимации
+
+        if(td.id === activeId) {
+            td.classList.add('neon');
+        } else {
+            td.classList.add('disable-bg');
+        }
+    });
+}
+
+// Запускаем при загрузке и каждую минуту
+document.addEventListener('DOMContentLoaded', updateActiveElement);
+setInterval(updateActiveElement, 60000);
+

@@ -92,7 +92,7 @@ body {
     margin: 1rem;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   
   .title {
@@ -127,7 +127,7 @@ body {
     margin: 1rem;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   
   .time-numbers {
@@ -541,4 +541,50 @@ footer {
 .lr-notice.visible {
     display: block;
 }
+
+.neon {
+    border: 2px solid #0f0 !important;
+    box-shadow: 0 0 20px #0f0 !important;
+    position: relative;
+    transform: scale(1);
+    animation: neon-pulse 1.5s infinite;
+}
+
+.disable-bg {
+    background: none !important;
+    opacity: 0.3;
+    filter: grayscale(80%);
+}
+
+@keyframes neon-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.03);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.element-table td {
+    border-radius: 8px; /* Скругление для обычных ячеек */
+    transition: border-radius 0.3s; /* Плавное изменение */
+}
+
+.element-table td.neon {
+    border-radius: 0 !important; /* Убираем только для активной */
+}
+
+.element-table {
+    overflow: visible !important; /* Разрешаем выход содержимого за границы */
+}
+
+
+
+
 
