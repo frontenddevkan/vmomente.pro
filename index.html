@@ -33,36 +33,102 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Vmomente.pro</title>
-    <h2>готовность калькулятора</h2>
-    <link rel="stylesheet" href="main.css?v=1.0.1">
-    <link rel="stylesheet" href="progressbar.css?v=1.0.1">
-    <script type="module" src="dagua.js?v=1.0.1"></script>
-    <script src="./chinese-calendar.js?v=1.0.1"></script>
-    <script src="./progressbar.js?v=1.0.1"></script>
+    <link rel="stylesheet" href="main.css?v=1.0.3">
+    <link rel="stylesheet" href="progressbar.css?v=1.0.3">
+    <link rel="stylesheet" href="season-progress.css?v=1.0.3">
+
+    <script type="module" src="./js/dagua.js?v=1.0.3"></script>
+    <script src="./js/chinese-calendar.js?v=1.0.3"></script>
+    <script src="./js/progressbar.js?v=1.0.3"></script>
+    <script src="./js/birth.js?v=1.0.3"></script>
+    <script src="./js/stars.js?v=1.0.3"></script>
+    <script src="./js/lr-warning.js?v=1.0.3"></script>
+    <!-- После chinese-calendar.js -->
+<script type="module" src="./js/chinese-calendar.js"></script>
+<script type="module" src="./js/lr-warning.js"></script>
+   
+<script type="module" src="./js/season-progress.js?v=1.0.5"></script>
+
+
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+
 </head>
 <header>
+    <h2>готовность калькулятора</h2>
+
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
 
+
+    
 </header>
+
+
 <body>
 
     <h1>Будь в лучшем моменте вместе с китайским календарем на Vmomente.pro</h1>
 
-    <div id="chinese-calendar"></div>
-    
-    <!-- пдклчаем наш файл с календарем -->
+
 <div id="dagua-info">
-<div>
-    <a href="./birth.html"><p>Как узнать свой Знак Года Рождения? - ссылка</p></a>
+<div> 
+
+    
+    <div class="columns-container">
+        <!-- Время -->
+        <div class="column">
+            <h3>ВРЕМЯ</h3>
+            <div id="current-time"></div>
+            <div class="characters" id="time-characters"></div>
+            <div id="time-dagua"></div>
+        </div>
+
+        <!-- День -->
+        <div class="column">
+            <h3>ДЕНЬ</h3>
+            <div id="current-day"></div>
+            <div class="characters" id="day-characters"></div>
+            <div id="day-dagua"></div>
+        </div>
+
+        <!-- Месяц -->
+        <div class="column">
+            <h3>МЕСЯЦ</h3>
+            <div id="current-month"></div>
+            <div class="characters" id="month-characters"></div>
+            <div id="month-dagua"></div>
+        </div>
+
+        <!-- Год -->
+        <div class="column">
+            <h3>ГОД</h3>
+            <div id="current-year"></div>
+            <div class="characters" id="year-characters"></div>
+            <div id="year-dagua"></div>
+        </div>
+    </div>
+
+    <!-- Остальной контент -->
+
+
+<!-- Блок предупреждения ЛР-->
+
+<div id="lr-warning" class="lr-notice">
+    <p>⚠️ Сегодня день Личного Разрушителя для людей с годом рождения <span id="lr-year"></span></p>
+</div>
+
+
+<!-- конеы предупреждения -->
+    <!-- КОНЕЦ отдельно по каждому знаку -->
+
+
 </div>
     <div id="health">
         <h4>Сегодня отличный день для решения ФИНАНСОВЫХ ВОПРОСОВ,</h4>
@@ -96,24 +162,91 @@
     </div>
     
 
-</div>
+ <!-- season-progress.html -->
+
+ <table class="element-table">
+    <tr>
+        <td class="green-bg" colspan="3" id="tree">Дерево 木</td>
+        <td class="red-bg" colspan="3" id="fire">Огонь 火</td>
+        <td class="gray-bg" colspan="3" id="metal">Металл 金</td>
+        <td class="blue-bg" colspan="3" id="water">Вода 水</td>
+    </tr>
+    <tr>
+        <!-- Дерево -->
+        <td class="green-bg" id="tiger">Инь<br>寅<br>Тигр</td>
+        <td class="green-bg" id="rabbit">Мао<br>卯<br>Кролик</td>
+        <td class="brown-bg" id="dragon">Чэн<br>辰<br>Дракон</td>
+        
+        <!-- Огонь -->
+        <td class="red-bg" id="snake">Сы<br>巳<br>Змея</td>
+        <td class="red-bg" id="horse">У<br>午<br>Лошадь</td>
+        <td class="brown-bg" id="goat">Вэй<br>未<br>Коза</td>
+        
+        <!-- Металл -->
+        <td class="gray-bg" id="monkey">Шэн<br>申<br>Обезьяна</td>
+        <td class="gray-bg" id="kok">Ю(йоу)<br>酉<br>Петух</td>
+        <td class="brown-bg" id="dog">Сюй<br>戌<br>Собака</td>
+        
+        <!-- Вода -->
+        <td class="blue-bg" id="pig">Хай<br>亥<br>Свинья</td>
+        <td class="blue-bg" id="mouse">Цзы<br>子<br>Крыса</td>
+        <td class="brown-bg" id="ox">Чоу<br>丑<br>Бык</td>
+    </tr>
+
+    <tr>
+        <td class="green-bg" colspan="3">Начало весны</td>
+        <td class="red-bg" colspan="3">Начало лета</td>
+        <td class="gray-bg" colspan="3">Начало осени</td>
+        <td class="blue-bg" colspan="3">Начало зимы</td>
+    </tr>
+<tr>
+        <td class="green-bg" colspan="3">Дождевые воды</td>
+        <td class="red-bg" colspan="3">Малое изобилие</td>
+        <td class="gray-bg" colspan="3">Прекращение жары</td>
+        <td class="blue-bg" colspan="3">Малые снега</td>
+</tr>
+
+<tr>
+    <td class="green-bg" colspan="3">Пробуждение насекомых</td>
+    <td class="red-bg" colspan="3">Колошение хлебов</td>
+    <td class="gray-bg" colspan="3">Прекращение жары</td>
+    <td class="blue-bg" colspan="3">Белые росы</td>
+
+</tr>
+
+<tr> 
+        <td class="green-bg" colspan="3">Весеннее равноденствие</td>
+        <td class="red-bg" colspan="3">Летнее солнцестояние</td>
+    <td class="gray-bg" colspan="3">Осеннее равноденствие</td>
+    <td class="blue-bg" colspan="3">Зимнее солнцестояние</td>
+</tr>
+
+<tr>
+        <td class="brown-bg" colspan="3">Чистота и ясность</td>
+        <td class="brown-bg" colspan="3">Малая жара</td>
+    <td class="brown-bg" colspan="3">Холодные росы</td>
+    <td class="brown-bg" colspan="3">Малые холода</td>
+
+</tr>
+
+<tr>
+        <td class="brown-bg" colspan="3">Хлебные дожди</td>
+        <td class="brown-bg" colspan="3">Большая жара</td>
+        <td class="brown-bg" colspan="3">Выпадение инея</td>
+        <td class="brown-bg" colspan="3">Большие холода</td>
+    
+</tr>
 
 
-    <style>
-        table {
-            width: 300px;
-            height: 300px;
-            border-collapse: collapse;
-        }
-        td {
-            border: 1px solid rgba(0, 0, 0, 0.604);
-            text-align: center;
-            vertical-align: middle;
-        }
-    </style>
+    
+</table>
+
+<!-- ---------------------------------------------------- -->
+
+
 
 <div id="lastHeaven">
-<h3>Позднее Небо</h3>
+    <h3>Позднее Небо</h3>
     <table id="loushu1">
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
@@ -125,27 +258,104 @@
 
 
 
-
-
 <div id="earlyHeaven">
-<h3>Раннее Небо</h3>
+    <h3>Раннее Небо</h3>
     <table id="loushu2">
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
         <tr><td></td><td></td><td></td></tr>
-    
+        
     </table>
 </div>
 
-
-   <!-- <script src="loushu.js"></script> -->
-
 <p style="font-size: 16px;">расклад построен по принципам Шу Ли Ци Мэнь Чай Бу Цзю. </p>
-<script src="clear.js?v=1.0.1"></script>
-<footer>
-    <a href="./qimen.html">ци мэнь дун цзя</a>
 
-    <p style="font-size: 16px;"> история возникновения
+
+
+
+<!-------------------------------------- -->
+
+<div>
+    <h2>Индивидуальные тенденции</h2>
+
+ <p>Для того, чтобы узнать в виде каких иероглифов изображается ваш год рождения, выберите соответствующие параметры вашей даты рождения</p>   
+    <div id="birth-date">
+        <h3>Введите свою дату рождения</h3>
+        <form id="birthday-form">
+            <label for="year">Год:</label>
+            <input type="number" id="year" name="year">
+            <p id="year-characters"></p> <!-- Добавлено для отображения иероглифов года -->
+
+            <label for="month">Месяц:</label>   
+            <!-- <input type="number" id="month" name="month" min="1" max="12">
+             -->
+             <select id="month" name="month">
+                <option value="">Не выбрано</option> 
+                <option value="1">Январь</option>
+                <option value="2">Февраль</option>
+                <option value="3">Март</option>
+                <option value="4">Апрель</option>
+                <option value="5">Май</option>
+                <option value="6">Июнь</option>
+                <option value="7">Июль</option>
+                <option value="8">Август</option>
+                <option value="9">Сентябрь</option>
+                <option value="10">Октябрь</option>
+                <option value="11">Ноябрь</option>
+                <option value="12">Декабрь</option>
+              </select>  
+
+              <p id="month-characters"></p> 
+              <!-- Добавлено для отображения иероглифов месяца -->
+
+            <label for="day">День:</label>  
+            <input type="number" id="day" name="day" min="1" max="31">
+            <p id="day-characters"></p> <!-- Добавлено для отображения иероглифов дня -->
+
+            <label for="hour">Час (0-23):</label>
+            <input type="number" id="hour" name="hour" min="0" max="23">
+            <p id="hour-characters"></p> <!-- Добавлено для отображения иероглифов часа -->
+
+            
+            <button type="submit">Рассчитать</button>
+        </form>    
+        <div id="advisor-star" style="margin-top: 30px; display: none;">
+            <h4>Ваша Звезда Советника по дню: <span id="star-symbol"></span></h4>
+        </div>
+
+
+        
+                  
+      
+    </div>    
+</div>    
+
+
+
+
+ 
+<!-- <script src="clear.js?v=1.0.3"></script> -->
+
+<footer>
+    <nav class="footer-menu">
+        <div class="footer-links">
+
+    <a href="./qimen.html">Ци Мэнь Дун Цзя</a>
+            <a href="#" class="coming-soon">Активации удачи</a>
+            <a href="#" class="coming-soon">Прогнозирование</a>
+            <a href="#" class="coming-soon">Обучение</a>
+            <a href="./index.html" class="home-link">Главная</a>
+        </div>
+        
+        <div class="footer-content">
+            <!-- Существующий текст -->
+            <p style="font-size: 16px; opacity: 0.8; line-height: 1.6;">
+                история возникновения • понятие ци • инь и ян • пять стихий • взаимодействие пяти стихий...
+            </p>
+        </div>
+    </nav>
+    
+    история возникновения
 понятие ци
 инь и ян 
 пять стихий
@@ -211,7 +421,7 @@
 поступит ли абитуриент в вуз
 есть ли перспективы отношений
 есть ли беременность
-найдется ли вещь</p>
+найдется ли вещь
 
 <!-- // добавить пддержку разнных языков
  использовать цсс и жс для добавления анимаций при изменении данных
@@ -219,9 +429,6 @@
  добавить взможность пользвателям оставлять тзывы в самм низу ээкраа и задавать вопросы. но вопросы платно.  -->
 
 </footer>
-
-
-
     
 </body>
 </html>

@@ -1,8 +1,5 @@
 
 
-
-
-
     // const chineseDay = "день"; 
     // const chineseMonth = "мес"; 
     // const chineseHours ="час"; 
@@ -114,6 +111,7 @@ const characterDay = currentDayInCycle;
 
     // 1. Создаем массив, который содержит все возможные комбинации двухчасовых промежутков
 
+
 export const hourCycle = [
 
     "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰", "辛巳",
@@ -195,23 +193,55 @@ export function getMonthName(month) {
 
 
 
-
 export function updateChineseCalendar() {
-    const chineseDate = getChineseDate();
-    const calendarElement = document.getElementById('chinese-calendar');
-    
-    if (calendarElement) {
-        calendarElement.innerHTML = 
-        `<p>Год: ${chineseDate.year}</p>
-        <p>Месяц: ${chineseDate.month}</p>
-        <p>День: ${chineseDate.day}</p>
-        <p>Час: ${chineseDate.hours}</p>
-        <p>Минут: ${chineseDate.minutes}</p>
-        <p>Секунд: ${chineseDate.seconds}</p>
-        `;
-        
-    }
+    const data = getChineseDate();
+
+
+     // Время
+     // Стилизация времени
+    const timeElement = document.getElementById('current-time');
+    timeElement.textContent = `${data.hours.toString().padStart(2, '0')}:${data.minutes.toString().padStart(2, '0')}:${data.seconds.toString().padStart(2, '0')}`;
+    timeElement.classList.add('time-style'); // Добавляем CSS-класс
+    // timeElement.style.fontFamily = 'Arial, sans-serif'; // Inline-стиль
+    timeElement.style.color = '#FFffff'; // Inline-стиль
+    timeElement.style.fontSize = '1.1rem';
+
+ 
+ document.getElementById('time-characters').innerHTML = 
+     `${characterHours.split('').join('<br>')}`;
+ document.getElementById('time-dagua').textContent = `Дагуа: ${daguaHours}`;
+
+ // День
+ document.getElementById('current-day').textContent = data.day;
+ document.getElementById('day-characters').innerHTML = 
+     `${characterDay.split('').join('<br>')}`;
+ document.getElementById('day-dagua').textContent = `Дагуа: ${daguaDay}`;
+
+ // Месяц
+ document.getElementById('current-month').textContent = data.month;
+ document.getElementById('month-characters').innerHTML = 
+     `${characterMonth.split('').join('<br>')}`;
+ document.getElementById('month-dagua').textContent = `Дагуа: ${daguaMonth}`;
+
+ // Год
+ document.getElementById('current-year').textContent = data.year;
+ document.getElementById('year-characters').innerHTML = 
+     `${characterYear.split('').join('<br>')}`;
+ document.getElementById('year-dagua').textContent = `Дагуа: ${daguaYear}`;
+
+
 }
+
+// Обновление каждую секунду
+setInterval(() => {
+ // Перерасчет значений
+ characterYear = getCurrentCycleValue(startDate.year, yearCycle, 'year');
+ characterMonth = getCurrentCycleValue(startDate.month, monthCycle, 'month');
+ characterDay = getCurrentCycleValue(startDate.day, dayCycle, 'day');
+ characterHours = getCurrentCycleValue(startDate.hour, hourCycle, 'hour');
+ 
+ updateChineseCalendar();
+}, 1000);
 
 
 export function getDaguaValue(character) {
@@ -321,10 +351,10 @@ export function getChineseDate() {
     const seconds = now.getSeconds();
 
     return {
-        year: year + " - - " + characterYear + " - -  " + `ДАГУА ГОДА: - - ${daguaYear}`, 
-        month: getMonthName(month) + " - - " + characterMonth + " - -  " + `ДАГУА МЕСЯЦА: - - ${daguaMonth}`,
-        day: day + " - - " + characterDay + " - -  " + `ДАГУА ДНЯ: - - ${daguaDay}`,
-        hours: hours + " - - " + characterHours + " - -  " + `ДАГУА ЧАСА: - - ${daguaHours}`,
+        year: year , 
+        month: getMonthName(month),
+        day: day,
+        hours: hours,
         minutes: minutes,
         seconds: seconds
     
@@ -342,4 +372,116 @@ setInterval(updateChineseCalendar, 1000);
 document.addEventListener('DOMContentLoaded', updateChineseCalendar);
 
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    function checkDayAndUpdateWarning() {
+        const dayCharsElement = document.getElementById('day-characters');
+        const lrYearElement = document.getElementById('lr-year');
+        const warningDiv = document.getElementById('lr-warning');
+
+        if (!dayCharsElement || !lrYearElement || !warningDiv) return;
+
+        const dayText = dayCharsElement.textContent;
+        
+        // Соответствия иероглифов и животных
+        const zodiacMap = {
+            '巳': 'Свинья 亥',
+            '午': 'Крыса 子',
+            '未': 'Бык 丑',
+            '申': 'Тигр 寅',
+            '酉': 'Кролик 卯',
+            '戌': 'Дракон 辰',
+            '亥': 'Змея 巳',
+            '子': 'Лошадь 午',
+            '丑': 'Коза 未',
+            '寅': 'Обезьяна 申',
+            '卯': 'Петух 酉',
+            '辰': 'Собака 戌'
+        };
+
+        // Проверяем каждый иероглиф
+        for (const [char, animal] of Object.entries(zodiacMap)) {
+            if (dayText.includes(char)) {
+                lrYearElement.textContent = animal;
+                warningDiv.style.display = 'block';
+                return;
+            }
+        }
+
+        // Если ничего не найдено
+        warningDiv.style.display = 'none';
+    }
+
+    // Первоначальная проверка и обновление каждую минуту
+    checkDayAndUpdateWarning();
+    setInterval(checkDayAndUpdateWarning, 60000);
+});
+
+
+
+
+// -------------------------------------
+
+function updateActiveElement() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1; // 1-12
+    const dateValue = month * 100 + day;
+
+    // Проверка для 26 апреля (426)
+    console.log('Текущая дата:', dateValue);
+
+    let activeId = 'water';
+    
+    if (dateValue >= 204 && dateValue <= 504) { // 4.02-4.05
+        activeId = 'tree';
+    } else if (dateValue >= 505 && dateValue <= 608) { // 5.05-6.08
+        activeId = 'fire';
+    } else if (dateValue >= 807 && dateValue <= 1107) { // 7.08-7.11
+        activeId = 'metal';
+    }
+
+    // Применяем стили
+    document.querySelectorAll('.element-table td').forEach(td => {
+        td.classList.remove('neon', 'disable-bg');
+        td.style.transform = 'scale(1)'; // Сброс анимации
+
+        if(td.id === activeId) {
+            td.classList.add('neon');
+        } else {
+            td.classList.add('disable-bg');
+        }
+    });
+}
+
+// Запускаем при загрузке и каждую минуту
+document.addEventListener('DOMContentLoaded', updateActiveElement);
+setInterval(updateActiveElement, 60000);
+
+// прогресс бар для зв
+
+// Функция для элементов стихий (tree, fire и т.д.)// chinese-calendar.js (исправленная часть)
+// chinese-calendar.js
+function updateActiveElements() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const dateValue = month * 100 + day;
+
+    // Сбрасываем все стили
+    document.querySelectorAll('.element-table td').forEach(td => {
+        td.classList.remove('neon');
+    });
+
+    // Активируем нужные элементы
+    if (dateValue >= 204 && dateValue <= 504) {
+        document.getElementById('tree')?.classList.add('neon');
+        document.getElementById('dragon')?.classList.add('neon');
+    }
+    // Добавьте другие условия по аналогии
+}
+
+// Обновление каждую минуту
+setInterval(updateActiveElements, 60000);
+document.addEventListener('DOMContentLoaded', updateActiveElements);
 

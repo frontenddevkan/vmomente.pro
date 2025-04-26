@@ -1,0 +1,54 @@
+/* Базовые стили таблицы */
+.element-table {
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 3px;
+    width: 95%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.element-table th,
+.element-table td {
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Цветовые классы для элементов */
+.green-bg { background: rgba(46, 204, 113, 0.3); }
+.red-bg    { background: rgba(231, 76, 60, 0.3); }
+.gray-bg  { background: rgba(149, 165, 166, 0.3); }
+.blue-bg  { background: rgba(52, 152, 219, 0.3); }
+.brown-bg { background: rgba(101, 67, 33, 0.3); }
+
+/* Стили для активных ячеек */
+.element-table .active {
+    position: relative;
+    background: var(--season-color, rgba(76, 175, 80, 0.5)) !important;
+    box-shadow: 
+        0 0 15px rgba(76, 175, 80, 0.3),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+/* Анимация подсветки */
+@keyframes pulse-active {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.element-table .active {
+    animation: pulse-active 2s infinite;
+}
+
+/* Усиление контраста текста */
+.element-table .active td,
+.element-table .active th {
+    color: #fff !important;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

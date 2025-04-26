@@ -1,18 +1,654 @@
+/* main.css - звездная часть */
 body {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    color: rgba(0, 0, 0, 0.757);
+    margin: 0;
+    padding: 0;
     font-family: 'Noto Sans SC', 'Microsoft YaHei', 'SimSun', sans-serif;
+    color: #e0e0e0;
+    background: 
+        radial-gradient(ellipse at bottom, 
+            #1B2735 0%, 
+            #090A0F 100%) no-repeat fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 20px 15px; /* Добавляем общие отступы */
+    box-sizing: border-box;
+    
 }
 
-header {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+    .columns-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+/* Анимации мерцания */
+@keyframes flicker {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    25%, 75% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Падающие звезды */
+.shooting-star {
+    position: absolute;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,1) 50%, 
+        rgba(255,255,255,0) 100%);
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+@keyframes shoot {
+    0% { 
+        transform: rotate(45deg) translateX(0);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    100% { 
+        transform: rotate(45deg) translateX(1000px) translateY(1000px);
+        opacity: 0;
+    }
+}
+
+/* Остальные стили остаются без изменений */
+
+
+/* Стили для блоков календаря */
+.calendar-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    /* border-radius: 8px; */
+  }
+  
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  
+  .year-value, .month-value, .day-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.3rem 0;
+    color: #ffd700;
+  }
+  
+  .characters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+    
+}
+
+
+  
+  /* Стили для блока времени */
+  .time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    /* border-radius: 8px; */
+  }
+  
+  .time-numbers {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: #00ff00;
+  }
+  
+  .time-labels {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  .seconds-label {
+    animation: pulse 1s infinite;
+  }
+  
+  /* Анимация для секунд */
+  @keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; text-shadow: 0 0 8px #00ff00; }
+    100% { opacity: 0.3; }
+  }
+
+  /* main.css */
+.columns-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 20px 0;
+    gap: 20px;
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* main.css */
+.columns-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.characters {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 15px 0;
+}
+
+#current-time {
+    font-size: 1.8rem;
+    color: #00ff00;
+    margin: 10px 0;
+}
+
+/* Стили для блоков рекомендаций */
+#health, 
+#relationships, 
+#quickly, 
+#help, 
+#job {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid;
+    transition: transform 0.3s ease;
+}
+
+#health { border-color: #4CAF50; } /* Зеленый для здоровья */
+#relationships { border-color: #E91E63; } /* Розовый для отношений */
+#quickly { border-color: #FFC107; } /* Желтый для быстрых решений */
+#help { border-color: #2196F3; } /* Синий для помощи */
+#job { border-color: #9C27B0; } /* Фиолетовый для карьеры */
+
+#health:hover,
+#relationships:hover,
+#quickly:hover,
+#help:hover,
+#job:hover {
+    transform: translateY(-3px);
+}
+
+/* Заголовки */
+#health h4, 
+#relationships h4, 
+#quickly h4, 
+#help h4, 
+#job h4 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0 0 1rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+#health h4:before,
+#relationships h4:before,
+#quickly h4:before,
+#help h4:before,
+#job h4:before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: inherit;
+}
+
+#health h5,
+#relationships h5,
+#quickly h5,
+#help h5,
+#job h5 {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin: 20px 15px;
+    width: calc(100% - 30px);
+    font-weight: 400;
+}
+
+/* Блоки с иероглифами */
+#dagua-health,
+#dagua-relationships,
+#dagua-quickly,
+#dagua-help,
+#dagua-job {
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    display: inline-block;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#lastHeaven, #earlyHeaven {
+    margin: 30px 0;
+    padding: 15px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+#birth-date {
+    padding: 20px;
+    margin: 20px 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+
+/* footer {
+    padding: 30px 15px;
+    margin-top: 40px;
+    background: rgba(0,0,0,0.3);
+} */
+
+
+
+/* Стили для футера */
+footer {
+    padding: 40px 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-menu {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+.footer-links a::after {
+    content: "✦";
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+.home-link::after {
+    content: "⌂" !important;
+}
+
+.coming-soon {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.footer-content p {
+    columns: 2;
+    column-gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .footer-content p {
+        columns: 1;
+    }
+    
+    .footer-links {
+        gap: 15px;
+        justify-content: center;
+    }
+}
+
+
+/* Стили для страницы qimen */
+.qimen-article {
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    padding: 40px;
+    margin: 30px 0;
+}
+
+.article-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.article-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 20px 0;
+}
+
+.highlight {
+    background: rgba(0,0,0,0.2);
+    padding: 25px;
+    border-left: 3px solid #4CAF50;
+    margin: 30px 0;
+}
+
+.structure {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.navigation {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 12px 25px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+.active {
+    background: #4CAF50;
+}
+
+/* Добавить в main.css */
+#astronomy-panel {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(25, 25, 35, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.globe-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+}
+
+.earth {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: 
+        radial-gradient(circle at 30% 40%, #2a5298 0%, #1a3b6b 30%, #0d2345 60%),
+        radial-gradient(circle at 70% 60%, #4a7b3c 0%, #36622d 30%, #244920 60%);
+    animation: rotate 40s linear infinite;
+    position: relative;
+}
+
+.axis {
+    position: absolute;
+    width: 4px;
+    height: 140%;
+    background: linear-gradient(to bottom, 
+        rgba(255,255,255,0.4) 0%, 
+        rgba(200,200,200,0.6) 50%, 
+        rgba(255,255,255,0.4) 100%);
+    left: 50%;
+    top: -20%;
+    transform: translateX(-50%) rotate(23.5deg);
+    z-index: 2;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.solstice-marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: gold;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#solstice-progress {
+    width: 200px;
+    margin: 20px auto;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(to right, #4CAF50, #FFC107);
+    width: var(--progress);
+    transition: width 0.5s ease;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #fff;
+}
+
+/* лр  */
+
+/* Стили для блока предупреждения */
+/* Стили для предупреждения */
+.lr-notice {
+    
+    background: rgba(219, 34, 56, 0.15); 
+    border-left: 4px solid #a11f1f;       
+    padding: 12px 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 6px;
+    color: #cdcccb;                       
+    font-size: 1.5rem;
+}
+
+.lr-notice.visible {
+    display: block;
+}
+
+
+/* Стили для ячеек таблицы зв */
+/* main.css */
+.neon {
+    animation: neon-pulse 1.5s infinite !important;
+    position: relative;
+    z-index: 2;
+    /* Только обводка и тень */
+    border: 2px solid transparent !important;
+    box-shadow: none !important;
+}
+
+/* Дерево (зеленый фон + зеленая подсветка) */
+#tree.neon {
+    border-color: #0f0 !important;
+    box-shadow: 0 0 20px #0f0 !important;
+}
+
+/* Дракон (коричневый фон + желтая подсветка) */
+#dragon.neon {
+    border-color: #FFEE58 !important;
+    box-shadow: 0 0 20px #FFEE58 !important;
+}
+
+/* Исходные цвета фона */
+.green-bg { background: #2d5a27 !important; }
+.red-bg { background: #5a2727 !important; }
+.brown-bg { background: #4a3a2a !important; }
+.gray-bg { background: #3a3a3a !important; }
+.blue-bg { background: #273d5a !important; }
+
+
+@keyframes neon-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.03);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.element-table td {
+    border-radius: 8px; /* Скругление для обычных ячеек */
+    transition: border-radius 0.3s; /* Плавное изменение */
+}
+
+.element-table td.neon {
+    border-radius: 0 !important; /* Убираем только для активной */
+}
+
+.element-table {
+    overflow: visible !important; /* Разрешаем выход содержимого за границы */
+}
+
+
+
+
+/* живтныее в прогерсс баре сезонов */
+
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 20px 15px;
+    font-family: 'Noto Sans SC', sans-serif;
+    color: #e0e0e0;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%) fixed;
+    min-height: 100vh;
+}
+
+/* Анимация пульсации */
+@keyframes neon-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: scale(1.03);
+        opacity: 1; 
+    }
+}
+
+/* Стили для всех активных элементов *//* main.css */
+.neon {
+    animation: neon-pulse 1.5s infinite !important;
+    position: relative;
+    z-index: 2;
+}
+
+#tree.neon {
+    border: 2px solid #0f0 !important;
+    box-shadow: 0 0 20px #0f0 !important;
+}
+
+#dragon.neon {
+    border: 2px solid #FFEE58 !important;
+    box-shadow: 0 0 20px #FFEE58 !important;
+}
+
+.element-table td {
+    padding: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05); /* Исходный фон для всех ячеек */
+}
+
