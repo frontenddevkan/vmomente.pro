@@ -542,19 +542,37 @@ footer {
     display: block;
 }
 
+
+/* Стили для ячеек таблицы зв */
+/* main.css */
 .neon {
-    border: 2px solid #0f0 !important;
-    box-shadow: 0 0 20px #0f0 !important;
+    animation: neon-pulse 1.5s infinite !important;
     position: relative;
-    transform: scale(1);
-    animation: neon-pulse 1.5s infinite;
+    z-index: 2;
+    /* Только обводка и тень */
+    border: 2px solid transparent !important;
+    box-shadow: none !important;
 }
 
-.disable-bg {
-    background: none !important;
-    opacity: 0.3;
-    filter: grayscale(80%);
+/* Дерево (зеленый фон + зеленая подсветка) */
+#tree.neon {
+    border-color: #0f0 !important;
+    box-shadow: 0 0 20px #0f0 !important;
 }
+
+/* Дракон (коричневый фон + желтая подсветка) */
+#dragon.neon {
+    border-color: #FFEE58 !important;
+    box-shadow: 0 0 20px #FFEE58 !important;
+}
+
+/* Исходные цвета фона */
+.green-bg { background: #2d5a27 !important; }
+.red-bg { background: #5a2727 !important; }
+.brown-bg { background: #4a3a2a !important; }
+.gray-bg { background: #3a3a3a !important; }
+.blue-bg { background: #273d5a !important; }
+
 
 @keyframes neon-pulse {
     0% {
@@ -587,4 +605,50 @@ footer {
 
 
 
+/* живтныее в прогерсс баре сезонов */
+
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 20px 15px;
+    font-family: 'Noto Sans SC', sans-serif;
+    color: #e0e0e0;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%) fixed;
+    min-height: 100vh;
+}
+
+/* Анимация пульсации */
+@keyframes neon-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: scale(1.03);
+        opacity: 1; 
+    }
+}
+
+/* Стили для всех активных элементов *//* main.css */
+.neon {
+    animation: neon-pulse 1.5s infinite !important;
+    position: relative;
+    z-index: 2;
+}
+
+#tree.neon {
+    border: 2px solid #0f0 !important;
+    box-shadow: 0 0 20px #0f0 !important;
+}
+
+#dragon.neon {
+    border: 2px solid #FFEE58 !important;
+    box-shadow: 0 0 20px #FFEE58 !important;
+}
+
+.element-table td {
+    padding: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05); /* Исходный фон для всех ячеек */
+}
 

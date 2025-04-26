@@ -458,3 +458,30 @@ function updateActiveElement() {
 document.addEventListener('DOMContentLoaded', updateActiveElement);
 setInterval(updateActiveElement, 60000);
 
+// прогресс бар для зв
+
+// Функция для элементов стихий (tree, fire и т.д.)// chinese-calendar.js (исправленная часть)
+// chinese-calendar.js
+function updateActiveElements() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const dateValue = month * 100 + day;
+
+    // Сбрасываем все стили
+    document.querySelectorAll('.element-table td').forEach(td => {
+        td.classList.remove('neon');
+    });
+
+    // Активируем нужные элементы
+    if (dateValue >= 204 && dateValue <= 504) {
+        document.getElementById('tree')?.classList.add('neon');
+        document.getElementById('dragon')?.classList.add('neon');
+    }
+    // Добавьте другие условия по аналогии
+}
+
+// Обновление каждую минуту
+setInterval(updateActiveElements, 60000);
+document.addEventListener('DOMContentLoaded', updateActiveElements);
+
