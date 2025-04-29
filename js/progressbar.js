@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const progressBar = document.getElementById("progress-bar");
-    const currentValue = 43; // Текущее значение
+    const currentValue = 48; // Текущее значение
     const maxValue = 525;   // Максимальное значение
     const duration = 1000;  // Длительность анимации в миллисекундах
 
