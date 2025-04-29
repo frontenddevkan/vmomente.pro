@@ -461,27 +461,128 @@ setInterval(updateActiveElement, 60000);
 // прогресс бар для зв
 
 // Функция для элементов стихий (tree, fire и т.д.)// chinese-calendar.js (исправленная часть)
-// chinese-calendar.js
 function updateActiveElements() {
     const today = new Date();
     const day = today.getDate();
     const month = today.getMonth() + 1;
     const dateValue = month * 100 + day;
 
-    // Сбрасываем все стили
-    document.querySelectorAll('.element-table td').forEach(td => {
-        td.classList.remove('neon');
-    });
+    // Сбрасываем подсветку
+    document.querySelectorAll('.neon').forEach(el => el.classList.remove('neon'));
 
-    // Активируем нужные элементы
-    if (dateValue >= 204 && dateValue <= 504) {
-        document.getElementById('tree')?.classList.add('neon');
-        document.getElementById('dragon')?.classList.add('neon');
-    }
-    // Добавьте другие условия по аналогии
+    // Определяем активные элементы
+    const activeElements = [];
+    
+    // Стихии
+    if (dateValue >= 204 && dateValue <= 504) activeElements.push('tree');
+    else if (dateValue >= 505 && dateValue <= 608) activeElements.push('fire');
+    else if (dateValue >= 807 && dateValue <= 1107) activeElements.push('metal');
+    else activeElements.push('water');
+
+    // Знаки зодиака
+    if (dateValue >= 204 && dateValue <= 304) activeElements.push('tiger');
+    else if (dateValue >= 305 && dateValue <= 403) activeElements.push('rabbit');
+    else if (dateValue >= 404 && dateValue <= 504) activeElements.push('dragon');
+    else if (dateValue >= 505 && dateValue <= 604) activeElements.push('snake');
+    else if (dateValue >= 605 && dateValue <= 706) activeElements.push('horse');
+    else if (dateValue >= 707 && dateValue <= 806) activeElements.push('goat');
+    else if (dateValue >= 807 && dateValue <= 907) activeElements.push('monkey');
+    else if (dateValue >= 908 && dateValue <= 1007) activeElements.push('kok');
+    else if (dateValue >= 1008 && dateValue <= 1107) activeElements.push('dog');
+    else if (dateValue >= 1108 && dateValue <= 1206) activeElements.push('pig');
+    else if ((dateValue >= 1207 && dateValue <= 1231) || (dateValue >= 101 && dateValue <= 104)) activeElements.push('mouse');
+    else if (dateValue >= 105 && dateValue <= 203) activeElements.push('ox');
+
+    // Применяем подсветку
+    activeElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.classList.add('neon');
+        } else {
+            console.error(`Элемент с id "${id}" не найден`);
+        }
+    });
 }
 
-// Обновление каждую минуту
-setInterval(updateActiveElements, 60000);
+// Запускаем при загрузке и каждую минуту
 document.addEventListener('DOMContentLoaded', updateActiveElements);
+setInterval(updateActiveElements, 60000);
+
+// сезоны 24 сезона
+
+// chinese-calendar.js
+function getSeasonPeriods() {
+    return [
+        {id: 'spring', start: [2,4]},    // 4 февраля
+        {id: 'rain', start: [2,19]},     // 19 февраля
+        {id: 'bee', start: [3,5]},       // 5 марта
+        {id: 'summer', start: [3,20]},   // 20 марта
+        {id: 'wind', start: [4,4]},      // 4 апреля
+        {id: 'rain2', start: [4,19]},    // 19 апреля
+        {id: 'summer2', start: [5,5]},   // 5 мая
+        {id: 'winter', start: [5,20]},   // 20 мая
+        {id: 'winter2', start: [6,5]},   // 5 июня
+        {id: 'summer3', start: [6,20]},  // 20 июня
+        {id: 'littlehot', start: [7,7]}, // 7 июля
+        {id: 'hot', start: [7,22]},      // 22 июля
+        {id: 'fall', start: [8,7]},      // 7 августа
+        {id: 'snow', start: [8,22]},     // 22 августа
+        {id: 'snow4', start: [9,7]},     // 7 сентября
+        {id: 'fall3', start: [9,22]},    // 22 сентября
+        {id: 'snow5', start: [10,8]},    // 8 октября
+        {id: 'snow6', start: [10,23]},   // 23 октября
+        {id: 'beginwinter', start: [11,8]},  // 8 ноября
+        {id: 'smallsnow', start: [11,23]},   // 23 ноября
+        {id: 'bigsnow', start: [12,7]},      // 7 декабря
+        {id: 'wintersun', start: [12,22]},   // 22 декабря
+        {id: 'smallsnow2', start: [1,5]},    // 5 января
+        {id: 'bigcold', start: [1,20]}       // 20 января
+    ];
+}
+
+function calculateActiveSeason(today) {
+    const currentYear = today.getFullYear();
+    const seasonPeriods = getSeasonPeriods();
+    
+    for(let period of seasonPeriods) {
+        const startDate = new Date(currentYear, period.start[0]-1, period.start[1]);
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 14);
+        
+        if(today >= startDate && today <= endDate) {
+            return period.id;
+        }
+    }
+    
+    // Обработка перехода через год
+    const firstPeriod = new Date(currentYear, 0, 5); // 5 января
+    if(today >= firstPeriod) {
+        return 'bigcold';
+    }
+    
+    return null;
+}
+
+function updateSeasonHighlight() {
+    const today = new Date();
+    const activeId = calculateActiveSeason(today);
+    
+    // Сброс всех подсветок
+    document.querySelectorAll('.season-cell').forEach(cell => {
+        cell.classList.remove('active');
+    });
+    
+    // Активация текущей ячейки
+    if(activeId) {
+        const activeCell = document.getElementById(activeId);
+        if(activeCell) {
+            activeCell.classList.add('active');
+            activeCell.style.animation = 'neonPulse 1.5s infinite';
+        }
+    }
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', updateSeasonHighlight);
+setInterval(updateSeasonHighlight, 1000 * 60 * 60 * 24); // Ежедневное обновление
 
