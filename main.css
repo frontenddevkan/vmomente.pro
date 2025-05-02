@@ -568,3 +568,143 @@ footer {
 .blue-character { color: #87CEEB !important; }
 
 
+/* таблица адаптация и компактность */
+
+
+/* Исправление позиционирования звездочки */
+.neon::after {
+    content: '★';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #fff;
+    font-size: 12px;
+    animation: star-pulse 1.5s infinite;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    z-index: 3;
+    line-height: 1;
+    transform: translate(0, 0); /* Фикс смещения */
+}
+
+/* Гарантия применения стилей для всех активных ячеек */
+td.neon {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Фикс для конкретной ячейки */
+#rain2.neon::after {
+    display: block !important; /* Принудительное отображение */
+}
+
+/* Адаптация для мобилок */
+@media (max-width: 768px) {
+    .neon::after {
+        top: 3px;
+        right: 3px;
+        font-size: 10px;
+    }
+    
+    /* Фикс для табличной структуры */
+    tr {
+        position: relative;
+        display: table-row;
+    }
+    
+    td {
+        display: table-cell;
+        width: auto;
+    }
+}
+
+
+/* добавляем нейронности  */
+
+
+/* Обновленные стили таблицы */
+table {
+    /* ... предыдущие стили ... */
+    background: linear-gradient(
+        135deg,
+        rgba(46, 52, 73, 0.25) 0%,
+        rgba(32, 38, 57, 0.4) 100%
+    );
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 0 12px rgba(255,255,255,0.05);
+}
+
+/* Эффект кристаллической текстуры */
+table::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -50%;
+    width: 200%;
+    height: 110%;
+    background: 
+        repeating-linear-gradient(
+            30deg,
+            rgba(255,255,255,0.02) 0,
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 8px
+        ),
+        repeating-linear-gradient(
+            -60deg,
+            rgba(255,255,255,0.02) 0,
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 8px
+        );
+    animation: texture-move 40s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes texture-move {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(100px,50px); }
+}
+
+/* Эффект преломления света */
+table::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.04),
+        transparent
+    );
+    animation: light-sweep 8s infinite;
+    z-index: 2;
+}
+
+@keyframes light-sweep {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* Адаптация для мобилок */
+@media (max-width: 768px) {
+    table {
+        backdrop-filter: blur(12px);
+    }
+    
+    table::before {
+        animation-duration: 60s;
+    }
+    
+    table::after {
+        animation-duration: 12s;
+    }
+}
