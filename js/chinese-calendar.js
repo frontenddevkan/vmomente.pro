@@ -22,6 +22,8 @@ export const yearCycle = [
 ];
 
 
+
+
     const currentDate = new Date(); // Создаем объект Date, который содержит текущую дату
     const currentYear = currentDate.getFullYear(); // Получаем текущий год
     
@@ -42,33 +44,74 @@ export const yearCycle = [
 
    // 2. Получаем текущий месяц
 
-
+   export const monthCycle = [
+    // 2025-2026 (первые 12 элементов)
+    "己卯", "庚辰", "辛巳", "壬午", "癸未", "甲申",
+    "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅",
+    // Остальные элементы цикла (дополнено до 60)
+    "辛卯", "壬辰", "癸巳", "甲午", "乙未", "丙申",
+    "丁酉", "戊戌", "己亥", "庚子", "辛丑", "壬寅",
+    "癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申",
+    "己酉", "庚戌", "辛亥", "壬子", "癸丑", "甲寅",
+    "乙卯", "丙辰", "丁巳", "戊午", "己未", "庚申",
+    "辛酉", "壬戌", "癸亥", "甲子", "乙丑", "丙寅",
+    "丁卯", "戊辰", "己巳", "庚午", "辛未", "壬申",
+    "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅"
+];
    
- export  const monthCycle = [
-    "己卯", "庚辰", "辛巳", "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子",
-    "己丑", "庚寅", "辛卯", "壬辰", "癸巳", "甲午", "乙未", "丙申", "丁酉", "戊戌",
-    "己亥", "庚子", "辛丑", "壬寅", "癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申",
-    "己酉", "庚戌", "辛亥", "壬子", "癸丑", "甲寅", "乙卯", "丙辰", "丁巳", "戊午",
-    "己未", "庚申", "辛酉", "壬戌", "癸亥", "甲子", "乙丑", "丙寅", "丁卯", "戊辰",
-    "己巳", "庚午", "辛未", "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅"
-  ];
-   
-  const currentMonth = currentDate.getMonth(); // Получаем текущий месяц (от 0 до 11)
+  // 2. Функция для получения дат перехода
 
-// 3. Определяем начальную дату цикла
-const startMonth = new Date(2025, 2, 4); // 4 марта 2025 года (месяцы в JavaScript нумеруются с 0, поэтому 2 — это март)
+  
+  function getTransitionDates(year) {
+    return [
+        new Date(year, 2, 5),   // 5 марта (0)
+        new Date(year, 3, 4),    // 4 апреля (1)
+        new Date(year, 4, 5),    // 5 мая (2)
+        new Date(year, 5, 5),    // 5 июня (3)
+        new Date(year, 6, 7),    // 7 июля (4)
+        new Date(year, 7, 7),    // 7 августа (5)
+        new Date(year, 8, 7),    // 7 сентября (6)
+        new Date(year, 9, 8),    // 8 октября (7)
+        new Date(year, 10, 7),   // 7 ноября (8)
+        new Date(year, 11, 7),   // 7 декабря (9)
+        new Date(year + 1, 0, 5), // 5 января (10)
+        new Date(year + 1, 1, 4)  // 4 февраля (11)
+    ];
+}
 
-// / 4. Вычисляем разницу в месяцах между текущей датой и начальной датой
-const monthDifference = (currentYear - startMonth.getFullYear()) * 12 + (currentMonth - startMonth.getMonth());
 
-// 5. Вычисляем индекс текущего месяца в массиве monthCycle
-const cycleLengthMonth = monthCycle.length; // Длина цикла (60 месяцев)
-const monthIndex = monthDifference % cycleLengthMonth; // Вычисляем индекс
 
-// 6. Получаем соответствующий месяц из массива
-const currentMonthInCycle = monthCycle[monthIndex];
 
-const characterMonth = currentMonthInCycle;
+// 3. Исправленный расчет индекса месяца
+function getMonthIndex() {
+    const currentDate = new Date();
+    const startDate = new Date(2025, 2, 5); // 5 марта 2025
+    let totalTransitions = 0;
+
+
+    // Считаем только переходы НАЧИНАЯ С 5 марта 2025
+    for (let year = 2025; year <= currentDate.getFullYear(); year++) {
+        const transitions = getTransitionDates(year);
+        for (const date of transitions) {
+            if (date > startDate && date <= currentDate) {
+                totalTransitions++;
+            }
+        }
+    }
+
+
+
+    // Корректируем индекс для первого перехода
+    if (currentDate >= startDate) totalTransitions++;
+
+    return (totalTransitions - 1) % monthCycle.length;
+}
+
+// 4. Получаем текущий месяц
+const monthIndex = getMonthIndex();
+const characterMonth = monthCycle[monthIndex];
+
+
 
 
     // 2. Получаем текущий день
@@ -204,7 +247,20 @@ export function updateChineseCalendar() {
     timeElement.classList.add('time-style'); // Добавляем CSS-класс
     // timeElement.style.fontFamily = 'Arial, sans-serif'; // Inline-стиль
     timeElement.style.color = '#FFffff'; // Inline-стиль
-    timeElement.style.fontSize = '1.1rem';
+    timeElement.style.fontSize = '1.0rem';
+
+     // Функция для раскраски иероглифов
+     const colorize = (str) => {
+        return str.split('').map(char => {
+            if ('甲乙寅卯'.includes(char)) return `<span class="green-character">${char}</span>`;
+            if ('丙丁巳午'.includes(char)) return `<span class="red-character">${char}</span>`;
+            if ('戊己丑辰未戌'.includes(char)) return `<span class="brown-character">${char}</span>`;
+            if ('庚辛申酉'.includes(char)) return `<span class="metal-character">${char}</span>`;
+            if ('壬癸子亥'.includes(char)) return `<span class="blue-character">${char}</span>`;
+            return char;
+        }).join('<br>');
+    };
+
 
  
  document.getElementById('time-characters').innerHTML = 
@@ -228,6 +284,12 @@ export function updateChineseCalendar() {
  document.getElementById('year-characters').innerHTML = 
      `${characterYear.split('').join('<br>')}`;
  document.getElementById('year-dagua').textContent = `Дагуа: ${daguaYear}`;
+
+ // Обновляем элементы с раскраской
+ document.getElementById('time-characters').innerHTML = colorize(characterHours);
+ document.getElementById('day-characters').innerHTML = colorize(characterDay);
+ document.getElementById('month-characters').innerHTML = colorize(characterMonth);
+ document.getElementById('year-characters').innerHTML = colorize(characterYear);
 
 
 }

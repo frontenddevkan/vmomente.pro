@@ -558,3 +558,13 @@ footer {
 #summer { background: #e74c3c; } */
 /* Добавьте остальные стили по аналогии */
 
+
+
+/* main.css */
+.green-character { color: #90EE90 !important; }
+.red-character { color: #FF6B6B !important; }
+.brown-character { color: #CDAA7D !important; }
+.metal-character { color: #C0C0C0 !important; }
+.blue-character { color: #87CEEB !important; }
+
+

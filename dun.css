@@ -1,0 +1,15 @@
+.dun-result {
+    padding: 12px;
+    margin: 15px 0;
+    border: 2px solid #2c3e50;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+}
+.dun-result.yang { background:rgba(1, 14, 23, 0.62); }
+.dun-result.ying { background: #2f024171; }
+
