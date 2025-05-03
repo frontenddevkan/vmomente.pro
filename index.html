@@ -34,37 +34,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Vmomente.pro</title>
-    <link rel="stylesheet" href="main.css?v=1.0.3">
-    <link rel="stylesheet" href="progressbar.css?v=1.0.3">
 
-    <script src="./js/chinese-calendar.js?v=1.0.3"></script>
-    <script src="./js/progressbar.js?v=1.0.3"></script>
-    <script src="js/birth.js" type="module"></script>
-    <script src="js/dagua.js" type="module"></script>
-    <script src="./js/stars.js?v=1.0.3"></script>
+
+    <link rel="stylesheet" href="./css/main.css?v=1.0.4">
+    <link rel="stylesheet" href="./css/progressbar.css?v=1.0.4">
+    <link rel="stylesheet" href="./css/season.css?v=1.0.4">
+    <link rel="stylesheet" href="./css/dun.css?v=1.0.4">
+    <link rel="stylesheet" href="./css/neural-style.css?v=1.0.4">
+
+
+    <script src="./js/chinese-calendar.js?v=1.0.4"></script>
+    <script src="./js/progressbar.js?v=1.0.4"></script>
+    <script src="./js/birth.js?v=1.0.4" type="module"></script>
+    <script src="./js/dagua.js?v=1.0.4" type="module"></script>
+    <script src="./js/stars.js?v=1.0.4"></script>
     <script src="./js/lr-warning.js?v=1.0.4" type="module"></script>
-    <!-- После chinese-calendar.js -->
+    <script type="module" src="./js/season-progress.js?v=1.0.4"></script>
+    <script src="./js/dun.js?v=1.0.4"></script>
+    <script src="./js/colorize-characters.js?v=1.0.4"></script>
+    <script src="./js/neural-animation.js?v=1.0.4"></script>
+    <script type="module" src="./js/chinese-calendar.js?v=1.0.4"></script>
+    <script src="./js/lunarDisplay.js?v=1.0.4"></script>
+    <script src="./js/season.js?v=1.0.4"></script>
 
-<script type="module" src="./js/season-progress.js?v=1.0.5"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="dun.css">
-<script src="./js/dun.js"></script>
-<script src="./js/colorize-characters.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
 
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
-
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
-    <link rel="stylesheet" href="neural-style.css">
-<script src="./js/neural-animation.js"></script>
-
-<script type="module" src="./js/chinese-calendar.js"></script>
-<script src="./js/lunarDisplay.js"></script>
-
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 
 </head>
 <header>
@@ -173,6 +170,8 @@
 
  <!-- season-progress.html -->
 
+ <div class="tables-container">
+<div class="responsive-table"></div>
  <table class="element-table">
     <tr>
         <td class="green-bg" colspan="3" id="tree">Дерево 木 - Сезон Весны</td>
@@ -193,7 +192,7 @@
         
         <!-- Металл -->
         <td class="gray-bg" id="monkey">Шэн<br>申<br>Обезьяна<br>Август</td>
-        <td class="gray-bg" id="kok">Ю(йоу)<br>酉<br>Петух<br>Сентябрь</td>
+        <td class="gray-bg" id="kok">Ю<br>酉<br>Петух<br>Сентябрь</td>
         <td class="brown-bg" id="dog">Сюй<br>戌<br>Собака<br>Октябрь</td>
         
         <!-- Вода -->
@@ -201,56 +200,65 @@
         <td class="blue-bg" id="mouse">Цзы<br>子<br>Крыса<br>Декабрь</td>
         <td class="brown-bg" id="ox">Чоу<br>丑<br>Бык<br>Январь</td>
     </tr>
-
+    </table>
+    </div>
+    </div>
+    
+<div class="tables-container">
+   <div class="responsive-table">
+   
+    <table class="season-table">
     <tr>
-        <td class="green-bg" colspan="3" id="spring">Начало весны</td>
-        <td class="red-bg" colspan="3" id="summer2">Начало лета</td>
-        <td class="gray-bg" colspan="3" id="fall">Начало осени</td>
-        <td class="blue-bg" colspan="3" id="beginwinter">Начало зимы</td>
+        <td class="green-bg season-cell" colspan="3" id="spring">Начало весны</td>
+        <td class="red-bg season-cell" colspan="3" id="summer2">Начало лета</td>
+        <td class="gray-bg season-cell" colspan="3" id="fall">Начало осени</td>
+        <td class="blue-bg season-cell" colspan="3" id="beginwinter">Начало зимы</td>
     </tr>
 <tr>
-        <td class="green-bg" colspan="3" id="rain">Дождевые воды</td>
-        <td class="red-bg" colspan="3" id="winter">Малое изобилие</td>
-        <td class="gray-bg" colspan="3" id="snow">Прекращение жары</td>
-        <td class="blue-bg" colspan="3" id="smallsnow">Малые снега</td>
+        <td class="green-bg season-cell" colspan="3" id="rain">Дождевые воды</td>
+        <td class="red-bg season-cell" colspan="3" id="winter">Малое изобилие</td>
+        <td class="gray-bg season-cell" colspan="3" id="snow">Прекращение жары</td>
+        <td class="blue-bg season-cell" colspan="3" id="smallsnow">Малые снега</td>
 </tr>
 
 <tr>
-    <td class="green-bg" colspan="3" id="bee">Пробуждение насекомых</td>
-    <td class="red-bg" colspan="3" id="winter2">Колошение хлебов</td>
-    <td class="gray-bg" colspan="3" id="snow4">Белые росы</td>
-    <td class="blue-bg" colspan="3" id="bigsnow">Большие снега</td>
+    <td class="green-bg season-cell" colspan="3" id="bee">Пробуждение насекомых</td>
+    <td class="red-bg season-cell" colspan="3" id="winter2">Колошение хлебов</td>
+    <td class="gray-bg season-cell" colspan="3" id="snow4">Белые росы</td>
+    <td class="blue-bg season-cell" colspan="3" id="bigsnow">Большие снега</td>
 
 </tr>
 
 <tr> 
-        <td class="green-bg" colspan="3" id="summer">Весеннее равноденствие</td>
-        <td class="red-bg" colspan="3" id="summer3">Летнее солнцестояние</td>
-    <td class="gray-bg" colspan="3" id="fall3">Осеннее равноденствие</td>
-    <td class="blue-bg" colspan="3" id="wintersun">Зимнее солнцестояние</td>
+        <td class="green-bg season-cell" colspan="3" id="summer">Весеннее равноденствие</td>
+        <td class="red-bg season-cell" colspan="3" id="summer3">Летнее солнцестояние</td>
+        <td class="gray-bg season-cell" colspan="3" id="fall3">Осеннее равноденствие</td>
+        <td class="blue-bg season-cell" colspan="3" id="wintersun">Зимнее солнцестояние</td>
 </tr>
 
 <tr>
-        <td class="brown-bg" colspan="3" id="wind">Чистота и ясность</td>
-        <td class="brown-bg" colspan="3" id="littlehot">Малая жара</td>
-    <td class="brown-bg" colspan="3" id="snow5">Холодные росы</td>
-    <td class="brown-bg" colspan="3" id="smallsnow2">Малые холода</td>
+        <td class="brown-bg season-cell" colspan="3" id="wind">Чистота и ясность</td>
+        <td class="brown-bg season-cell" colspan="3" id="littlehot">Малая жара</td>
+        <td class="brown-bg season-cell" colspan="3" id="snow5">Холодные росы</td>
+        <td class="brown-bg season-cell" colspan="3" id="smallsnow2">Малые холода</td>
 
 </tr>
 
 <tr>
-        <td class="brown-bg" colspan="3" id="rain2">Хлебные дожди</td>
-        <td class="brown-bg" colspan="3" id="hot">Большая жара</td>
-        <td class="brown-bg" colspan="3" id="snow6">Выпадение инея</td>
-        <td class="brown-bg" colspan="3" id="bigcold">Большие холода</td>
+        <td class="brown-bg season-cell" colspan="3" id="rain2">Хлебные дожди</td>
+        <td class="brown-bg season-cell" colspan="3" id="hot">Большая жара</td>
+        <td class="brown-bg season-cell" colspan="3" id="snow6">Выпадение инея</td>
+        <td class="brown-bg season-cell" colspan="3" id="bigcold">Большие холода</td>
     
 </tr>
 
-
-    
 </table>
+</div>
+</div>
+    
+<!-- разряжающий отступочный див  -->
 
-<!-- сделать менее грамоздкой поотом как ибудь этот пргрессбар сезонов. чтобы была покомпактней.  -->
+<div class="bufer"></div>
 
 <!-- янская иньская пробежка ----------- -->
 

@@ -1,0 +1,17 @@
+/* Обновленные стили для таблицы сезонов */
+.season-table td {
+    padding: 3px 5px !important; /* Вертикальные 3px, горизонтальные 5px */
+    font-size: 0.9em;
+    line-height: 1.1;
+    vertical-align: middle;
+}
+
+.season-table tr {
+    height: 40px !important; /* Фиксированная высота строк */
+}
+
+/* Для заголовочных строк с названиями сезонов */
+.season-table tr:first-child td {
+    padding: 6px 8px !important;
+    font-size: 1.0em;
+}
