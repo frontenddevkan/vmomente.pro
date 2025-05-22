@@ -58,6 +58,10 @@
     <script src="./js/lunarDisplay.js?v=1.0.4"></script>
     <script src="./js/season.js?v=1.0.4"></script>
     <script src="./js/rings.js?v=1.0.4"></script>
+    <script src="./js/hourChart.js?v=1.0.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lunisolar@2.4.1/dist/lunisolar.min.js"></script>
+
+
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
@@ -274,8 +278,74 @@
 <div class="tables-container">
     <!-- Таблица Часа -->
     <div class="qimen-glass-table" id="hourTable">
-      <div class="grid-container"></div>
+      <div class="grid-container" id="hourGrid"></div>
       <div class="table-label">Таблица Ци Мэнь Часа</div>
+        <div class="result" id="output">
+            <!-- Добавляем блок с данными столпа дня -->
+    <div class="stem-branch-info">
+        <h3>Столп дня:</h3>
+        <div class="stem-branch-container">
+            <div class="stem-cell">
+                <div class="hanzi">丙</div>
+                <div class="details">
+                    <span class="element fire">Огонь</span>
+                    <span class="yin-yang yang">Ян</span>
+                </div>
+            </div>
+            <div class="branch-cell">
+                <div class="hanzi">寅</div>
+                <div class="details">
+                    <span class="element wood">Дерево</span>
+                    <span class="animal">Тигр</span>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- Блок информации о юане -->
+    <div class="yuan-info">
+        <h3>Текущий юань:</h3>
+        <div class="yuan-display">
+            <span class="yuan-type upper">Верхний</span>
+            <div class="yuan-details">
+                <p>Определен по Земной Ветви: 子</p>
+                <p>Связан с: Цветок персика</p>
+            </div>
+<div class="yuan-item">
+            <span class="yuan-label">Юань:</span>
+            <span class="yuan-value upper">Верхний (1)</span>
+        </div>
+        <div class="yuan-item">
+            <span class="yuan-label">Сезон:</span>
+            <span class="yuan-value">Хлебные дожди</span>
+        </div>
+        <div class="yuan-item">
+            <span class="yuan-label">Номер юаня:</span>
+            <span class="yuan-value number">1</span>
+        </div>
+        <div class="yuan-item">
+            <span class="yuan-label">Поток:</span>
+            <span class="yuan-value yang">Ян</span>
+        </div>
+
+
+
+
+        <!-- ---- -->
+            
+        </div>
+
+
+
+
+        
+    </div>
+
+    
+
+
+</div>
+
+
     </div>
   
     <!-- Таблица Дня -->

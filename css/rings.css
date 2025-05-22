@@ -27,22 +27,23 @@
     position: relative;
     aspect-ratio: 1;
     min-width: 50px;
-    border: 1px solid rgba(127, 255, 255, 0.3);
+    border: 1px solid  #87cfeb75;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.6rem;
     padding: 10px;
-    color: #7fffd4;
-    text-shadow: 0 0 15px rgba(127, 255, 212, 0.5);
+    color: #87CEEB; /* Изменен на голубой */
+    text-shadow: 0 0 15px rgba(135, 206, 235, 0.4);
+     
   }
   
   .table-label {
     font-size: 1.2rem;
     margin-top: 15px;
-    color: #7fffd4;
-    text-shadow: 0 0 12px rgba(127, 255, 212, 0.4);
+    color: #87CEEB; /* Изменен на голубой */
+    text-shadow: 0 0 15px rgba(135, 206, 235, 0.4);
   }
   
   @media (max-width: 1200px) {
@@ -69,3 +70,14 @@
       font-size: 1.1rem;
     }
   }
+
+
+  /* Стили для вывода данных */
+        .result {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            color: #87CEEB; /* Изменен на голубой */
+            font-family: Arial, sans-serif;
+        }
