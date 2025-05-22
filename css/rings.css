@@ -1,0 +1,71 @@
+/* Обновленные стили */
+.tables-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 25px;
+  }
+  
+  .qimen-glass-table {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 40px rgba(127, 255, 255, 0.15);
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    min-height: 200px;
+  }
+  
+  .grid-cell {
+    position: relative;
+    aspect-ratio: 1;
+    min-width: 50px;
+    border: 1px solid rgba(127, 255, 255, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    padding: 10px;
+    color: #7fffd4;
+    text-shadow: 0 0 15px rgba(127, 255, 212, 0.5);
+  }
+  
+  .table-label {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    color: #7fffd4;
+    text-shadow: 0 0 12px rgba(127, 255, 212, 0.4);
+  }
+  
+  @media (max-width: 1200px) {
+    .tables-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .tables-container {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+    
+    .qimen-glass-table {
+      max-width: 280px;
+    }
+    
+    .grid-cell {
+      font-size: 1.4rem;
+    }
+    
+    .table-label {
+      font-size: 1.1rem;
+    }
+  }
